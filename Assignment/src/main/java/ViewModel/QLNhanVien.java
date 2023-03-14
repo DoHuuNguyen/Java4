@@ -1,29 +1,35 @@
 package ViewModel;
 
-public class QLKhachHang {
+public class QLNhanVien {
     private String ma;
     private String ho;
     private String tenDem;
     private String ten;
+    private String gioiTinh;
     private String ngaySinh;
     private String sdt;
     private String diaChi;
     private String matKhau;
+    private String idCuahang;
+    private String idChucVu;
     private String quocGia;
     private String thanhPho;
 
-    public QLKhachHang(String ma, String ten, String diaChi, String thanhPho, String quocGia) {
+    public QLNhanVien() {
     }
 
-    public QLKhachHang(String ma, String ho, String tenDem, String ten, String ngaySinh, String sdt, String diaChi, String matKhau, String quocGia, String thanhPho) {
+    public QLNhanVien(String ma, String ho, String tenDem, String ten, String gioiTinh, String ngaySinh, String sdt, String diaChi, String matKhau, String idCuahang, String idChucVu, String quocGia, String thanhPho) {
         this.ma = ma;
         this.ho = ho;
         this.tenDem = tenDem;
         this.ten = ten;
+        this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.matKhau = matKhau;
+        this.idCuahang = idCuahang;
+        this.idChucVu = idChucVu;
         this.quocGia = quocGia;
         this.thanhPho = thanhPho;
     }
@@ -60,6 +66,14 @@ public class QLKhachHang {
         this.ten = ten;
     }
 
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
     public String getNgaySinh() {
         return ngaySinh;
     }
@@ -92,6 +106,22 @@ public class QLKhachHang {
         this.matKhau = matKhau;
     }
 
+    public String getIdCuahang() {
+        return idCuahang;
+    }
+
+    public void setIdCuahang(String idCuahang) {
+        this.idCuahang = idCuahang;
+    }
+
+    public String getIdChucVu() {
+        return idChucVu;
+    }
+
+    public void setIdChucVu(String idChucVu) {
+        this.idChucVu = idChucVu;
+    }
+
     public String getQuocGia() {
         return quocGia;
     }
@@ -108,4 +138,3 @@ public class QLKhachHang {
         this.thanhPho = thanhPho;
     }
 }
-

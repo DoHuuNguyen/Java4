@@ -8,12 +8,21 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet({"/KhachHang/create","/KhachHang/store"})
+@WebServlet({"/KhachHang/create","/KhachHang/store","/KhachHang/index","/KhachHang/delete"})
 public class KhachHangServlet extends HttpServlet {
     private ArrayList<QLKhachHang> list = new ArrayList<>();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.create(request,response);
+        String uri = request.getRequestURI();
+        if(uri.contains("create")){
+            this.create(request,response);
+        }else if(uri.contains("edit")){
+            //this.edit(request,response);
+        }else if(uri.contains("delete")){
+            //this.delete(request,response);
+        }else{
+            this.index(request,response);
+        }
     }
 
     @Override
@@ -39,5 +48,11 @@ public class KhachHangServlet extends HttpServlet {
         list.add(kh);
 
         System.out.println(ngaySinh);
+    }
+    protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        list.add(new QLKhachHang("PH1", "Ng", "Van", "AAA", "12/12/2020", "0123123123", "HN", "123456", "VN", "HN"));
+        list.add(new QLKhachHang("PH2", "Tran", "Van", "B", "12/12/2018", "0123123423", "ND", "123456", "VN", "HN"));
+        request.setAttribute("dsKhachHang",this.list);
+        request.getRequestDispatcher("/Views/KhachHang/index.jsp").forward(request,response);
     }
 }

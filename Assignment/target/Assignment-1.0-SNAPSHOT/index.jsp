@@ -37,5 +37,19 @@
         </tbody>
     </table>
 </div>
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link active"  href="KhachHang/create">Thêm Khách Hàng</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="ChucVu/create">Thêm Chức Vụ</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="NhanVien/create">Thêm Nhân Viên</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="CuaHang/create">Thêm Cửa Hàng</a>
+    </li>
+</ul>
 </body>
 </html>

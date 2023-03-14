@@ -12,7 +12,7 @@
     <title>Cửa Hàng</title>
 </head>
 <body>
-<form method="post" action="/Assignment_war_exploded/KhachHang/store" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
+<form method="post" action="/Assignment_war_exploded/CuaHang/store" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
     <div style="margin: 20px">
         <center><h1>Cửa Hàng</h1></center><br>
         <div class="mb-3 row">
