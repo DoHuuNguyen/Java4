@@ -16,6 +16,7 @@
 </head>
 <body>
 <div style="margin: 30px">
+    <a class="btn btn-primary" href="../KhachHang/create" >Thêm mới</a>
     <table class="table table-striped-columns">
 
         <c:if test="${f:length(dsKhachHang)==0}">
@@ -48,6 +49,8 @@
                 <td class="col">${kh.sdt}</td>
                 <td class="col">${kh.thanhPho}</td>
                 <td class="col">${kh.quocGia}</td>
+                <td class="col"><a class="btn btn-primary" href="../KhachHang/edit?ma=${kh.ma}">Sửa</a>
+                    <a class="btn btn-primary" href="../KhachHang/delete?ma=${kh.ma}">Xóa</a></td>
             </tr>
             </c:forEach>
             </tbody>

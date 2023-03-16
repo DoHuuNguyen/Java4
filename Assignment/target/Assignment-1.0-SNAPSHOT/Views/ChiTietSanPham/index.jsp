@@ -1,22 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Acer
-  Date: 3/14/2023
-  Time: 2:24 PM
+  Date: 3/16/2023
+  Time: 11:05 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
-    <title>Khách Hàng</title>
-
+    <title>Chi Tiết Sản Phẩm</title>
 </head>
 <body>
 <div style="margin: 30px">
-    <a class="btn btn-primary" href="../KhachHang/create" >Thêm mới</a>
     <table class="table table-striped-columns">
 
         <c:if test="${f:length(dsKhachHang)==0}">
@@ -39,19 +35,17 @@
             </thead>
             <tbody>
             <c:forEach items="${dsKhachHang}" var="kh">
-            <tr>
-                <td class="col">${kh.ma}</td>
-                <td class="col">${kh.ho}</td>
-                <td class="col">${kh.tenDem}</td>
-                <td class="col">${kh.ten}</td>
-                <td class="col">${kh.ngaySinh}</td>
-                <td class="col">${kh.diaChi}</td>
-                <td class="col">${kh.sdt}</td>
-                <td class="col">${kh.thanhPho}</td>
-                <td class="col">${kh.quocGia}</td>
-                <td class="col"><a class="btn btn-primary" href="../KhachHang/edit?ma=${kh.ma}">Sửa</a>
-                    <a class="btn btn-primary" href="../KhachHang/delete?ma=${kh.ma}">Xóa</a></td>
-            </tr>
+                <tr>
+                    <td class="col">${kh.ma}</td>
+                    <td class="col">${kh.ho}</td>
+                    <td class="col">${kh.tenDem}</td>
+                    <td class="col">${kh.ten}</td>
+                    <td class="col">${kh.ngaySinh}</td>
+                    <td class="col">${kh.diaChi}</td>
+                    <td class="col">${kh.sdt}</td>
+                    <td class="col">${kh.thanhPho}</td>
+                    <td class="col">${kh.quocGia}</td>
+                </tr>
             </c:forEach>
             </tbody>
         </c:if>
