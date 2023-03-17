@@ -1,19 +1,36 @@
 package Controller.Admin;
 
+import ViewModel.QLKhachHang;
 import ViewModel.QLNhanVien;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import repository.NhanVienRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet({"/NhanVien/create","/NhanVien/store"})
+@WebServlet({"/NhanVien/create",
+        "/NhanVien/store",
+"/NhanVien/delete","/NhanVien/edit","/NhanVien/index"})
 public class NhanVienServlet extends HttpServlet {
-    ArrayList<QLNhanVien> list = new ArrayList<>();
+    private NhanVienRepository nvRepo;
+
+    public NhanVienServlet(){
+        this.nvRepo = new NhanVienRepository();
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.create(request,response);
+        String uri = request.getRequestURI();
+        if(uri.contains("create")){
+            this.create(request,response);
+        }else if(uri.contains("edit")){
+            this.edit(request,response);
+        }else if(uri.contains("delete")){
+            this.delete(request,response);
+        }else{
+            this.index(request,response);
+        }
     }
 
     @Override
@@ -39,7 +56,25 @@ public class NhanVienServlet extends HttpServlet {
         String thanhPho = request.getParameter("thanhPho");
 
         QLNhanVien nv = new QLNhanVien(ma,ho,ten,tenDem,gioiTinh,ngaySinh,sdt,diaChi,matKhau,idChucVu,idCuaHang,quocGia,thanhPho);
-        list.add(nv);
-        System.out.println(gioiTinh);
+        this.nvRepo.insert(nv);
+        response.sendRedirect("../NhanVien/index");
+    }
+    protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("dsNhanVien",this.nvRepo.findAll());
+        request.getRequestDispatcher("/Views/NhanVien/index.jsp").forward(request,response);
+    }
+    protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
+        String ma = req.getParameter("ma");
+        System.out.println(ma);
+        QLNhanVien kh = this.nvRepo.findByMa(ma);
+        this.nvRepo.delete(kh);
+        resp.sendRedirect("../NhanVien/index");
+    }
+    protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String ma = request.getParameter("ma");
+        QLNhanVien nv = this.nvRepo.findByMa(ma);
+        request.setAttribute("dsnv", nv);
+        request.getRequestDispatcher("/Views/NhanVien/edit.jsp")
+                .forward(request, response);
     }
 }
