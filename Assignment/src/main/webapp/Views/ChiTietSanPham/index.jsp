@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
@@ -13,38 +15,43 @@
 </head>
 <body>
 <div style="margin: 30px">
+    <a class="btn btn-primary" href="../ChiTietSanPham/create" >Thêm mới</a>
     <table class="table table-striped-columns">
 
-        <c:if test="${f:length(dsKhachHang)==0}">
+        <c:if test="${f:length(dsctsp)==0}">
             <center><h3>Không có dữ liệu</h3></center>
         </c:if>
-        <c:if test="${f:length(dsKhachHang)!=0}">
+        <c:if test="${f:length(dsctsp)!=0}">
             <thead>
             <tr>
-                <th class="col">Mã</th>
-                <th class="col">Họ</th>
-                <th class="col">Tên Đệm</th>
-                <th class="col">Tên</th>
-                <th class="col">Ngày Sinh</th>
-                <th class="col">Địa Chỉ</th>
-                <th class="col">Số Điện Thoại</th>
+                <th class="col">Id Sản Phẩm</th>
+                <th class="col">Tên Sản Phẩm </th>
+                <th class="col">Id Nhà Sản Xuất</th>
+                <th class="col">Id Màu Sắc</th>
+                <th class="col">Id Dòng Sản Phẩm</th>
+                <th class="col">Năm Bảo Hành</th>
+                <th class="col">Mô Tả</th>
 
-                <th class="col">Thành Phố</th>
-                <th class="col">Quốc Gia</th>
+                <th class="col">Số Lượng </th>
+                <th class="col">Giá Nhập</th>
+                <th class="col">Giá Bán</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${dsKhachHang}" var="kh">
+            <c:forEach items="${dsctsp}" var="kh">
                 <tr>
-                    <td class="col">${kh.ma}</td>
-                    <td class="col">${kh.ho}</td>
-                    <td class="col">${kh.tenDem}</td>
-                    <td class="col">${kh.ten}</td>
-                    <td class="col">${kh.ngaySinh}</td>
-                    <td class="col">${kh.diaChi}</td>
-                    <td class="col">${kh.sdt}</td>
-                    <td class="col">${kh.thanhPho}</td>
-                    <td class="col">${kh.quocGia}</td>
+                    <td class="col">${kh.idSP}</td>
+                    <td class="col">${kh.tenSp}</td>
+                    <td class="col">${kh.idNSX}</td>
+                    <td class="col">${kh.idMauSac}</td>
+                    <td class="col">${kh.idDongSP}</td>
+                    <td class="col">${kh.namBh}</td>
+                    <td class="col">${kh.moTa}</td>
+                    <td class="col">${kh.soLuong}</td>
+                    <td class="col">${kh.giaNhap}</td>
+                    <td class="col">${kh.giaBan}</td>
+                    <td class="col"><a class="btn btn-primary" href="../ChiTietSanPham/edit?idSP=${kh.idSP}">Sửa</a>
+                        <a class="btn btn-primary" href="../ChiTietSanPham/delete?idSP=${kh.idSP}">Xóa</a></td>
                 </tr>
             </c:forEach>
             </tbody>

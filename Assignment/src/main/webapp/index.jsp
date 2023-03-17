@@ -50,6 +50,9 @@
     <li class="nav-item">
         <a class="nav-link" href="CuaHang/create">Thêm Cửa Hàng</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="ChiTietSanPham/create">Thêm Chi Tiết Sản Phẩm</a>
+    </li>
 </ul>
 </body>
 </html>

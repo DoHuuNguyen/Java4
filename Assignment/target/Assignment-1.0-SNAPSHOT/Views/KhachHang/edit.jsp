@@ -25,49 +25,49 @@
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Họ</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="ho">
+                    <input type="text" class="form-control" name="ho" value="${kh.ho}">
                 </div>
             </div>
 <%--            --%>
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tên Đệm</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="tenDem">
+                    <input type="text" class="form-control" name="tenDem" value="${kh.tenDem}">
                 </div>
             </div>
 <%--            --%>
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tên</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="ten">
+                    <input type="text" class="form-control" name="ten" value="${kh.ten}">
                 </div>
             </div>
 <%--            --%>
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Ngày Sinh</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="ngaySinh">
+                    <input type="date" class="form-control" name="ngaySinh" value="${kh.ngaySinh}">
                 </div>
             </div>
 <%--            --%>
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Số Điện Thoại</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="sdt">
+                    <input type="text" class="form-control" name="sdt"value="${kh.sdt}">
                 </div>
             </div>
 <%--            --%>
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Đia Chỉ</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="diaChi">
+                    <input type="text" class="form-control" name="diaChi"value="${kh.diaChi}">
                 </div>
             </div>
             <%--            --%>
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Mật Khẩu</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" name="matKhau">
+                    <input type="password" class="form-control" name="matKhau" value="${kh.matKhau}">
                 </div>
             </div>
             <%--            --%>
@@ -76,8 +76,8 @@
                 <div class="col-sm-10">
                     <select name="quocGia" class="form-select">
                         <option value="Việt Nam" ${ kh.quocGia == "Việt Nam" ? "selected" : "" }>Việt Nam</option>
-                        <option value="Mỹ">Mỹ</option>
-                        <option value="Hàn Quốc">Hàn Quốc</option>
+                        <option value="Mỹ" ${ kh.quocGia == "Mỹ" ? "selected" : "" }>Mỹ</option>
+                        <option value="Hàn Quốc" ${ kh.quocGia == "Hàn Quốc" ? "selected" : "" }>Hàn Quốc</option>
                     </select>
                 </div>
             </div>
@@ -86,14 +86,14 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Thành Phố</label>
                 <div class="col-sm-10">
                     <select name="thanhPho" class="form-select">
-                        <option value="Hà Nội">Hà Nội</option>
-                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                        <option value="Hải Phòng">Hải Phòng</option>
+                        <option value="Hà Nội" ${ kh.thanhPho == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
+                        <option value="Hồ Chí Minh" ${ kh.thanhPho == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+                        <option value="Hải Phòng" ${ kh.thanhPho == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
                     </select>
                 </div>
             </div>
             <%--            --%>
-            <button type="submit">Thêm</button>
+            <button type="submit">Sửa</button>
         </div>
     </form>
 <script src="/Assignment_war_exploded/js/bootstrap.min.js"></script>

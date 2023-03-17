@@ -59,6 +59,7 @@ public class KhachHangServlet extends HttpServlet {
     }
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
         String ma = req.getParameter("ma");
+        System.out.println(ma);
         QLKhachHang kh = this.khRepo.findByMa(ma);
         this.khRepo.delete(kh);
         resp.sendRedirect("../KhachHang/index");

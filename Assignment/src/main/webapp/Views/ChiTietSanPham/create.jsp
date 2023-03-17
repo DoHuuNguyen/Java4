@@ -29,7 +29,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="tenSP">
+                <input type="text" class="form-control" name="tenSp">
             </div>
         </div>
         <%--            --%>
@@ -69,7 +69,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Năm Bảo Hành</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="namBH">
+                <input type="text" class="form-control" name="namBh">
             </div>
         </div>
         <%--            --%>
@@ -83,21 +83,21 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="soLuong">
+                <input type="number" class="form-control" name="soLuong">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Nhập</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="giaNhap">
+                <input type="number" class="form-control" name="giaNhap">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Bán</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="giaBan">
+                <input type="number" class="form-control" name="giaBan">
             </div>
         </div>
         <%--            --%>

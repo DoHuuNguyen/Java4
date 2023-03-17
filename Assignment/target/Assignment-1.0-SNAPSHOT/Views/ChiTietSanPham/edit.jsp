@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Acer
-  Date: 3/16/2023
-  Time: 10:44 AM
+  Date: 3/17/2023
+  Time: 4:50 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -29,7 +29,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="tenSp">
+                <input type="text" class="form-control" name="tenSP">
             </div>
         </div>
         <%--            --%>
@@ -69,7 +69,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Năm Bảo Hành</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="namBh">
+                <input type="text" class="form-control" name="namBH">
             </div>
         </div>
         <%--            --%>
@@ -83,25 +83,25 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name="soLuong">
+                <input type="text" class="form-control" name="soLuong">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Nhập</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name="giaNhap">
+                <input type="text" class="form-control" name="giaNhap">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Bán</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name="giaBan">
+                <input type="text" class="form-control" name="giaBan">
             </div>
         </div>
         <%--            --%>
-        <button type="submit">Thêm</button>
+        <button type="submit">Sửa</button>
     </div>
 </form>
 <script src="/Assignment_war_exploded/js/bootstrap.min.js"></script>

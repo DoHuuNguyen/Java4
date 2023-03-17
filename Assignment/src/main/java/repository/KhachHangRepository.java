@@ -25,7 +25,7 @@ public class KhachHangRepository {
     public void delete(QLKhachHang kh){
         //
         for (int i = 0; i < this.list.size(); i++) {
-            QLKhachHang item =this.list.get(i);
+            QLKhachHang item = this.list.get(i);
             if(item.getMa().equals(kh.getMa()));
             this.list.remove(i);
         }
