@@ -1,40 +1,90 @@
 package Controller.Admin;
 
+import ViewModel.QLChucVu;
 import ViewModel.QLCuaHang;
 import ViewModel.QLKhachHang;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.apache.commons.beanutils.BeanUtils;
+import repository.CuaHangRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet({"/CuaHang/create", "/CuaHang/store"})
+@WebServlet({"/CuaHang/create", "/CuaHang/store", "/CuaHang/edit", "/CuaHang/delete", "/CuaHang/update", "/CuaHang/index"})
 public class CuaHangServlet extends HttpServlet {
-    ArrayList<QLCuaHang> list = new ArrayList<>();
+    private CuaHangRepository chRepo;
+
+    public CuaHangServlet(){
+        this.chRepo = new CuaHangRepository();
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.create(request,response);
+        String uri = request.getRequestURI();
+        if(uri.contains("create")){
+            this.create(request,response);
+        }else if(uri.contains("edit")){
+            this.edit(request,response);
+        }else if(uri.contains("delete")){
+            this.delete(request,response);
+        }else{
+            this.index(request,response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.store(request,response);
+        String uri = request.getRequestURI();
+        if(uri.contains("store")){
+            this.store(request,response);
+        }else if(uri.contains("update")){
+            this.update(request,response);
+        }else{
+            this.index(request,response);
+        }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/Views/CuaHang/create.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            QLCuaHang ch = new QLCuaHang();
+            BeanUtils.populate(ch, request.getParameterMap());
+            this.chRepo.insert(ch);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        response.sendRedirect("../CuaHang/index");
+    }
+    protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        String ten = request.getParameter("ten");
-        String diaChi =request.getParameter("diaChi");
-        String thanhPho = request.getParameter("thanhPho");
-        String quocGia = request.getParameter("quocGia");
-
-        QLCuaHang ch = new QLCuaHang(ma,ten,diaChi,thanhPho,quocGia);
-        list.add(ch);
-
+        QLCuaHang ch = this.chRepo.findByMa(ma);
+        request.setAttribute("ch", ch);
+        request.getRequestDispatcher("/Views/CuaHang/edit.jsp")
+                .forward(request, response);
+    }
+    protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            QLCuaHang ch = new QLCuaHang();
+            BeanUtils.populate(ch, request.getParameterMap());
+            this.chRepo.update(ch);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        response.sendRedirect("../CuaHang/index");
+    }
+    protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String ma = request.getParameter("ma");
         System.out.println(ma);
+        QLCuaHang ch = this.chRepo.findByMa(ma);
+        this.chRepo.delete(ch);
+        response.sendRedirect("../CuaHang/index");
+    }
+    protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("dsCuaHang",this.chRepo.findAll());
+        request.setAttribute("view","/Views/CuaHang/index.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
 
 }

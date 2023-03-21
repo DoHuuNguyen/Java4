@@ -8,13 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="f" uri="jakarta.tags.functions" %>
-<html>
-<head>
-    <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
-    <title>Khách Hàng</title>
-
-</head>
-<body>
 <div style="margin: 30px">
     <a class="btn btn-primary" href="../KhachHang/create" >Thêm mới</a>
     <table class="table table-striped-columns">
@@ -58,5 +51,4 @@
 
     </table>
 </div>
-</body>
-</html>
+

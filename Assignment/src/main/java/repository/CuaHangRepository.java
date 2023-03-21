@@ -1,6 +1,5 @@
 package repository;
 
-import ViewModel.QLChucVu;
 import ViewModel.QLCuaHang;
 
 import java.util.ArrayList;

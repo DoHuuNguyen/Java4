@@ -57,7 +57,8 @@ public class KhachHangServlet extends HttpServlet {
     }
     protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("dsKhachHang",this.khRepo.findAll());
-        request.getRequestDispatcher("/Views/KhachHang/index.jsp").forward(request,response);
+        request.setAttribute("view","/Views/KhachHang/index.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
         String ma = req.getParameter("ma");

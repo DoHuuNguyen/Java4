@@ -62,7 +62,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
     }
     protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("dsctsp",this.ctspRepo.findAll());
-        request.getRequestDispatcher("/Views/ChiTietSanPham/index.jsp").forward(request,response);
+        request.setAttribute("view","/Views/ChiTietSanPham/index.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
         String idSP = req.getParameter("idSP");

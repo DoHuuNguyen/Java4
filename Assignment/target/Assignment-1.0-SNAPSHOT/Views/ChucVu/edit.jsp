@@ -28,7 +28,7 @@
                 <input type="text" class="form-control" name="ten" value="${cv.ten}">
             </div>
         </div>
-        <button type="submit">Thêm</button>
+        <button type="submit">Sửa</button>
     </div>
 </form>
 <script src="/Assignment_war_exploded/js/bootstrap.min.js"></script>

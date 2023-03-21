@@ -39,7 +39,7 @@
 </div>
 <ul class="nav justify-content-center">
     <li class="nav-item">
-        <a class="nav-link active"  href="KhachHang/create">Thêm Khách Hàng</a>
+        <a class="nav-link active"  href="/Assignment_war_exploded/Views/layout.jsp">Layout</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="ChucVu/create">Thêm Chức Vụ</a>
