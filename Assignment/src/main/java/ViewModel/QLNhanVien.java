@@ -10,7 +10,7 @@ public class QLNhanVien {
     private String sdt;
     private String diaChi;
     private String matKhau;
-    private String idCuahang;
+    private String idCuaHang;
     private String idChucVu;
     private String quocGia;
     private String thanhPho;
@@ -18,7 +18,7 @@ public class QLNhanVien {
     public QLNhanVien() {
     }
 
-    public QLNhanVien(String ma, String ho, String tenDem, String ten, String gioiTinh, String ngaySinh, String sdt, String diaChi, String matKhau, String idCuahang, String idChucVu, String quocGia, String thanhPho) {
+    public QLNhanVien(String ma, String ho, String tenDem, String ten, String gioiTinh, String ngaySinh, String sdt, String diaChi, String matKhau, String idCuaHang, String idChucVu, String quocGia, String thanhPho) {
         this.ma = ma;
         this.ho = ho;
         this.tenDem = tenDem;
@@ -28,7 +28,7 @@ public class QLNhanVien {
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.matKhau = matKhau;
-        this.idCuahang = idCuahang;
+        this.idCuaHang = idCuaHang;
         this.idChucVu = idChucVu;
         this.quocGia = quocGia;
         this.thanhPho = thanhPho;
@@ -106,12 +106,12 @@ public class QLNhanVien {
         this.matKhau = matKhau;
     }
 
-    public String getIdCuahang() {
-        return idCuahang;
+    public String getidCuaHang() {
+        return idCuaHang;
     }
 
-    public void setIdCuahang(String idCuahang) {
-        this.idCuahang = idCuahang;
+    public void setidCuaHang(String idCuaHang) {
+        this.idCuaHang = idCuaHang;
     }
 
     public String getIdChucVu() {

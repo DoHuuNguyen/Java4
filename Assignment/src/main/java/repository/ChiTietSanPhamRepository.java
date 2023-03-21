@@ -15,20 +15,22 @@ public class ChiTietSanPhamRepository {
     public void insert(QLChiTietSP ctsp){
         this.list.add(ctsp);
     }
-    public void update(QLChiTietSP ctsp){
+    public void update(QLChiTietSP ctsp ){
         //
         for (int i = 0; i < this.list.size(); i++) {
             QLChiTietSP item = this.list.get(i);
-            if(item.getIdSP().equals(ctsp.getIdSP()));
-            this.list.set(i,ctsp);
+            if(item.getIdSP().equals(ctsp.getIdSP())) {
+                this.list.set(i, ctsp);
+            }
         }
     }
     public void delete(QLChiTietSP ctsp){
         //
         for (int i = 0; i < this.list.size(); i++) {
             QLChiTietSP item = this.list.get(i);
-            if(item.getIdSP().equals(ctsp.getIdSP()));
-            this.list.remove(i);
+            if(item.getIdSP().equals(ctsp.getIdSP())) {
+                this.list.remove(i);
+            }
         }
     }
     public ArrayList<QLChiTietSP> findAll(){
@@ -37,9 +39,10 @@ public class ChiTietSanPhamRepository {
     public QLChiTietSP findByMa(String idSP){
         //
         for (int i = 0; i < this.list.size(); i++) {
-            QLChiTietSP item = this.list.get(i);
-            if(item.getIdSP().equals(idSP));
-            return this.list.get(i);
+            QLChiTietSP item = this.list.get(i) ;
+                if (item.getIdSP().equals(idSP)){
+                return this.list.get(i);
+            }
         }
         return null;
     }

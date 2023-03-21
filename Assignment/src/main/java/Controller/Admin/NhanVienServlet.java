@@ -60,7 +60,7 @@ public class NhanVienServlet extends HttpServlet {
         response.sendRedirect("../NhanVien/index");
     }
     protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("dsNhanVien",this.nvRepo.findAll());
+        request.setAttribute("dsnv",this.nvRepo.findAll());
         request.getRequestDispatcher("/Views/NhanVien/index.jsp").forward(request,response);
     }
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
@@ -73,7 +73,7 @@ public class NhanVienServlet extends HttpServlet {
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         QLNhanVien nv = this.nvRepo.findByMa(ma);
-        request.setAttribute("dsnv", nv);
+        request.setAttribute("nv", nv);
         request.getRequestDispatcher("/Views/NhanVien/edit.jsp")
                 .forward(request, response);
     }

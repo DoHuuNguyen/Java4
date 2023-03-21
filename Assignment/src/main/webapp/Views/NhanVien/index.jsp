@@ -19,20 +19,23 @@
     <a class="btn btn-primary" href="../NhanVien/create" >Thêm mới</a>
     <table class="table table-striped-columns">
 
-        <c:if test="${f:length(dsNhanVien)==0}">
+        <c:if test="${f:length(dsnv)==0}">
             <center><h3>Không có dữ liệu</h3></center>
         </c:if>
-        <c:if test="${f:length(dsNhanVien)!=0}">
+        <c:if test="${f:length(dsnv)!=0}">
             <thead>
             <tr>
                 <th class="col">Mã</th>
                 <th class="col">Họ</th>
                 <th class="col">Tên Đệm</th>
                 <th class="col">Tên</th>
+                <th class="col">Giới Tính</th>
                 <th class="col">Ngày Sinh</th>
                 <th class="col">Địa Chỉ</th>
                 <th class="col">Số Điện Thoại</th>
-
+                <th class="col">Mật Khẩu</th>
+                <th class="col">ID Cửa Hàng</th>
+                <th class="col">ID Chức Vụ</th>
                 <th class="col">Thành Phố</th>
                 <th class="col">Quốc Gia</th>
             </tr>
@@ -48,10 +51,12 @@
                     <td class="col">${nv.ngaySinh}</td>
                     <td class="col">${nv.diaChi}</td>
                     <td class="col">${nv.sdt}</td>
+                    <td class="col">${nv.idCuaHang}</td>
+                    <td class="col">${nv.idChucVu}</td>
                     <td class="col">${nv.thanhPho}</td>
                     <td class="col">${nv.quocGia}</td>
-                    <td class="col"><a class="btn btn-primary" href="../KhachHang/edit?ma=${kh.ma}">Sửa</a>
-                        <a class="btn btn-primary" href="../KhachHang/delete?ma=${kh.ma}">Xóa</a></td>
+                    <td class="col"><a class="btn btn-primary" href="../NhanVien/edit?ma=${nv.ma}">Sửa</a>
+                        <a class="btn btn-primary" href="../NhanVien/delete?ma=${nv.ma}">Xóa</a></td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -15,6 +15,7 @@
 </head>
 <body>
 <div style="margin: 30px">
+    <a class="btn btn-primary" href="../ChiTietSanPham/create" >Thêm mới</a>
     <table class="table table-striped-columns">
 
         <c:if test="${f:length(dsctsp)==0}">

@@ -4,12 +4,13 @@ import ViewModel.QLKhachHang;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.apache.commons.beanutils.BeanUtils;
 import repository.KhachHangRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet({"/KhachHang/create","/KhachHang/store","/KhachHang/index","/KhachHang/delete","/KhachHang/edit"})
+@WebServlet({"/KhachHang/create","/KhachHang/store","/KhachHang/index","/KhachHang/delete","/KhachHang/edit","/KhachHang/update"})
 public class KhachHangServlet extends HttpServlet {
     private KhachHangRepository khRepo;
 
@@ -32,25 +33,26 @@ public class KhachHangServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.store(request,response);
+        String uri = request.getRequestURI();
+        if(uri.contains("store")){
+            this.store(request,response);
+        }else if(uri.contains("update")){
+            this.update(request,response);
+        }else{
+            this.index(request,response);
+        }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/Views/KhachHang/create.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        String ho = request.getParameter("ho");
-        String tenDem = request.getParameter("tenDem");
-        String ten = request.getParameter("ten");
-        String ngaySinh = request.getParameter("ngaySinh");
-        String sdt = request.getParameter("sdt");
-        String diaChi = request.getParameter("diaChi");
-        String matKhau = request.getParameter("matKhau");
-        String quocGia = request.getParameter("quocGia");
-        String thanhPho = request.getParameter("thanhPho");
-
-        QLKhachHang kh = new QLKhachHang(ma,ho,tenDem,ten,ngaySinh,sdt,diaChi,matKhau,quocGia,thanhPho);
-        this.khRepo.insert(kh);
+        try {
+            QLKhachHang kh = new QLKhachHang();
+            BeanUtils.populate(kh, request.getParameterMap());
+            this.khRepo.insert(kh);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         response.sendRedirect("../KhachHang/index");
     }
     protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,5 +72,15 @@ public class KhachHangServlet extends HttpServlet {
         request.setAttribute("kh", kh);
         request.getRequestDispatcher("/Views/KhachHang/edit.jsp")
                 .forward(request, response);
+    }
+    protected void update(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+        try {
+            QLKhachHang kh = new QLKhachHang();
+            BeanUtils.populate(kh, request.getParameterMap());
+            this.khRepo.update(kh);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        response.sendRedirect("../KhachHang/index");
     }
 }

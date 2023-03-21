@@ -12,7 +12,7 @@ public class QLKhachHang {
     private String quocGia;
     private String thanhPho;
 
-    public QLKhachHang(String ma, String ten, String diaChi, String thanhPho, String quocGia) {
+    public QLKhachHang() {
     }
 
     public QLKhachHang(String ma, String ho, String tenDem, String ten, String ngaySinh, String sdt, String diaChi, String matKhau, String quocGia, String thanhPho) {

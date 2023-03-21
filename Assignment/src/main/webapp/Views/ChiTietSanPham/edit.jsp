@@ -12,16 +12,16 @@
     <title>Chi Tiết Sản Phẩm</title>
 </head>
 <body>
-<form method="post" action="/Assignment_war_exploded/ChiTietSanPham/store" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
+<form method="post" action="/Assignment_war_exploded/ChiTietSanPham/update?idSP=${ctsp.idSP}" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
     <div style="margin: 20px">
         <center><h1>Chi Tiết Sản Phẩm</h1></center>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">id Sản Phẩm</label>
             <div class="col-sm-10">
                 <select name="idSP" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hà Nội" ${ ctsp.idNSX == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
+                    <option value="Hồ Chí Minh" ${ ctsp.idNSX == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+                    <option value="Hải Phòng" ${ ctsp.idNSX == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
                 </select>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="tenSP">
+                <input type="text" class="form-control" name="tenSp" value="${ctsp.tenSp}">
             </div>
         </div>
         <%--            --%>
@@ -37,9 +37,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Nhà Sản Xuất</label>
             <div class="col-sm-10">
                 <select name="idNSX" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hà Nội" ${ ctsp.idNSX == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
+                    <option value="Hồ Chí Minh" ${ ctsp.idNSX == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+                    <option value="Hải Phòng" ${ ctsp.idNSX == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
                 </select>
             </div>
         </div>
@@ -48,9 +48,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Màu Sắc</label>
             <div class="col-sm-10">
                 <select name="idMauSac" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hà Nội" ${ ctsp.idMauSac == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
+                    <option value="Hồ Chí Minh" ${ ctsp.idMauSac == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+                    <option value="Hải Phòng" ${ ctsp.idMauSac == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
                 </select>
             </div>
         </div>
@@ -59,9 +59,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Dong Sản Phẩm</label>
             <div class="col-sm-10">
                 <select name="idDongSP" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hà Nội" ${ ctsp.idDongSP == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
+                    <option value="Hồ Chí Minh" ${ ctsp.idDongSP == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+                    <option value="Hải Phòng" ${ ctsp.idDongSP == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
                 </select>
             </div>
         </div>
@@ -69,35 +69,35 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Năm Bảo Hành</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="namBH">
+                <input type="text" class="form-control" name="namBh" value="${ctsp.namBh}">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Mô Tả</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="moTa">
+                <input type="text" class="form-control" name="moTa" value="${ctsp.moTa}">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="soLuong">
+                <input type="text" class="form-control" name="soLuong" value="${ctsp.soLuong}">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Nhập</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="giaNhap">
+                <input type="text" class="form-control" name="giaNhap" value="${ctsp.giaNhap}">
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Bán</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="giaBan">
+                <input type="text" class="form-control" name="giaBan" value="${ctsp.giaBan}">
             </div>
         </div>
         <%--            --%>

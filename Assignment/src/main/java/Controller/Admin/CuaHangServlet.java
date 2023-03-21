@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import ViewModel.QLCuaHang;
 import ViewModel.QLKhachHang;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 @WebServlet({"/CuaHang/create", "/CuaHang/store"})
 public class CuaHangServlet extends HttpServlet {
-    ArrayList<QLKhachHang> list = new ArrayList<>();
+    ArrayList<QLCuaHang> list = new ArrayList<>();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.create(request,response);
@@ -30,7 +31,7 @@ public class CuaHangServlet extends HttpServlet {
         String thanhPho = request.getParameter("thanhPho");
         String quocGia = request.getParameter("quocGia");
 
-        QLKhachHang ch = new QLKhachHang(ma,ten,diaChi,thanhPho,quocGia);
+        QLCuaHang ch = new QLCuaHang(ma,ten,diaChi,thanhPho,quocGia);
         list.add(ch);
 
         System.out.println(ma);
