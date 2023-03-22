@@ -34,6 +34,21 @@
           <li class="nav-item">
             <a class="nav-link" href="../CuaHang/index">Cửa Hàng</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../DongSP/index">Dòng Sản Phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../ChucVu/index">Chức Vụ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../MauSac/index">Màu Sắc</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../SanPham/index">Sản Phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../NhaSanXuat/index">Nhà Sản Xuất</a>
+          </li>
         </ul>
       </div>
     </div>

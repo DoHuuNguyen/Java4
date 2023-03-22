@@ -7,15 +7,10 @@ public class QLDongSP {
 
     public QLDongSP() {
     }
-
-
-
     public QLDongSP(String ma, String ten) {
         this.ma = ma;
         this.ten = ten;
     }
-
-
 
     public String getMa() {
         return ma;

@@ -12,7 +12,7 @@
     <title>Nhân Viên</title>
 </head>
 <body>
-<form method="post" action="/Assignment_war_exploded/NhanVien/store" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
+<form method="post" action="/Assignment_war_exploded/NhanVien/update?ma=${nv.ma}" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
     <div style="margin: 20px">
         <center><h1>Nhân Viên</h1></center>
         <div class="mb-3 row">

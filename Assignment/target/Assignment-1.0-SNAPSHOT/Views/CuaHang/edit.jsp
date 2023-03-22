@@ -18,7 +18,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Mã</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="ma" value="${ch.ma}">
+                <input type="text" class="form-control" name="ma" value="${ch.ma}" disabled>
             </div>
         </div>
         <%--            --%>

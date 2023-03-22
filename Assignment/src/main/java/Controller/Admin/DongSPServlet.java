@@ -1,27 +1,29 @@
 package Controller.Admin;
 
 import ViewModel.QLChucVu;
-import ViewModel.QLKhachHang;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import ViewModel.QLDongSP;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
+import repository.DongSPRepository;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-@WebServlet({"/ChucVu/create",
-             "/ChucVu/store",
-            "/ChucVu/update",
-         "/ChucVu/edit",
-           "/ChucVu/index",
-        "/ChucVu/delete"})
-public class ChucVuServlet extends HttpServlet {
-    private ChucVuRepository cvRepo;
+@WebServlet({"/DongSP/create",
+             "/DongSP/store",
+            "/DongSP/update",
+         "/DongSP/edit",
+           "/DongSP/index",
+        "/DongSP/delete"})
+public class DongSPServlet extends HttpServlet {
+    private DongSPRepository dongRepo;
 
-    public ChucVuServlet(){
-        this.cvRepo = new ChucVuRepository();
+    public DongSPServlet(){
+        this.dongRepo = new DongSPRepository();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,45 +51,45 @@ public class ChucVuServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("view","/Views/ChucVu/create.jsp");
+        request.setAttribute("view","/Views/DongSP/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChucVu cv = new QLChucVu();
-            BeanUtils.populate(cv, request.getParameterMap());
-            this.cvRepo.insert(cv);
+            QLDongSP dong = new QLDongSP();
+            BeanUtils.populate(dong, request.getParameterMap());
+            this.dongRepo.insert(dong);
         }catch (Exception e){
             e.printStackTrace();
         }
-        response.sendRedirect("../ChucVu/index");
+        response.sendRedirect("../DongSP/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLChucVu cv = this.cvRepo.findByMa(ma);
-        request.setAttribute("cv", cv);
-        request.setAttribute("view","/Views/ChucVu/edit.jsp");
+        QLDongSP dong = this.dongRepo.findByMa(ma);
+        request.setAttribute("dong", dong);
+        request.setAttribute("view","/Views/DongSP/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChucVu cv = new QLChucVu();
-            BeanUtils.populate(cv, request.getParameterMap());
-            this.cvRepo.update(cv);
+            QLDongSP dong = new QLDongSP();
+            BeanUtils.populate(dong, request.getParameterMap());
+            this.dongRepo.update(dong);
         }catch (Exception e){
             e.printStackTrace();
         }
-        response.sendRedirect("../ChucVu/index");
+        response.sendRedirect("../DongSP/index");
     }
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLChucVu cv = this.cvRepo.findByMa(ma);
-        this.cvRepo.delete(cv);
-        response.sendRedirect("../ChucVu/index");
+        QLDongSP cv = this.dongRepo.findByMa(ma);
+        this.dongRepo.delete(cv);
+        response.sendRedirect("../DongSP/index");
     }protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("dsChucVu",this.cvRepo.findAll());
-        request.setAttribute("view","/Views/ChucVu/index.jsp");
+        request.setAttribute("dsDongSP",this.dongRepo.findAll());
+        request.setAttribute("view","/Views/DongSP/index.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
 }

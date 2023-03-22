@@ -1,27 +1,29 @@
 package Controller.Admin;
 
 import ViewModel.QLChucVu;
-import ViewModel.QLKhachHang;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import ViewModel.QLMauSac;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
+import repository.MauSacRepository;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-@WebServlet({"/ChucVu/create",
-             "/ChucVu/store",
-            "/ChucVu/update",
-         "/ChucVu/edit",
-           "/ChucVu/index",
-        "/ChucVu/delete"})
-public class ChucVuServlet extends HttpServlet {
-    private ChucVuRepository cvRepo;
+@WebServlet({"/MauSac/create",
+             "/MauSac/store",
+            "/MauSac/update",
+         "/MauSac/edit",
+           "/MauSac/index",
+        "/MauSac/delete"})
+public class MauSacServlet extends HttpServlet {
+    private MauSacRepository msRepo;
 
-    public ChucVuServlet(){
-        this.cvRepo = new ChucVuRepository();
+    public MauSacServlet(){
+        this.msRepo = new MauSacRepository();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,45 +51,45 @@ public class ChucVuServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("view","/Views/ChucVu/create.jsp");
+        request.setAttribute("view","/Views/MauSac/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChucVu cv = new QLChucVu();
-            BeanUtils.populate(cv, request.getParameterMap());
-            this.cvRepo.insert(cv);
+            QLMauSac ms = new QLMauSac();
+            BeanUtils.populate(ms, request.getParameterMap());
+            this.msRepo.insert(ms);
         }catch (Exception e){
             e.printStackTrace();
         }
-        response.sendRedirect("../ChucVu/index");
+        response.sendRedirect("../MauSac/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLChucVu cv = this.cvRepo.findByMa(ma);
-        request.setAttribute("cv", cv);
-        request.setAttribute("view","/Views/ChucVu/edit.jsp");
+        QLMauSac ms = this.msRepo.findByMa(ma);
+        request.setAttribute("ms", ms);
+        request.setAttribute("view","/Views/MauSac/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChucVu cv = new QLChucVu();
-            BeanUtils.populate(cv, request.getParameterMap());
-            this.cvRepo.update(cv);
+            QLMauSac ms = new QLMauSac();
+            BeanUtils.populate(ms, request.getParameterMap());
+            this.msRepo.update(ms);
         }catch (Exception e){
             e.printStackTrace();
         }
-        response.sendRedirect("../ChucVu/index");
+        response.sendRedirect("../MauSac/index");
     }
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLChucVu cv = this.cvRepo.findByMa(ma);
-        this.cvRepo.delete(cv);
-        response.sendRedirect("../ChucVu/index");
+        QLMauSac ms = this.msRepo.findByMa(ma);
+        this.msRepo.delete(ms);
+        response.sendRedirect("../MauSac/index");
     }protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("dsChucVu",this.cvRepo.findAll());
-        request.setAttribute("view","/Views/ChucVu/index.jsp");
+        request.setAttribute("dsMauSac",this.msRepo.findAll());
+        request.setAttribute("view","/Views/MauSac/index.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
 }
