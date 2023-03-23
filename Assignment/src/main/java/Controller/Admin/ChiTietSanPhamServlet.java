@@ -48,7 +48,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/Views/ChiTietSanPham/create.jsp").forward(request,response);
+        request.setAttribute("view","/Views/ChiTietSanPham/create.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -76,8 +77,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
         String idSP = request.getParameter("idSP");
         QLChiTietSP ctsp = this.ctspRepo.findByMa(idSP);
         request.setAttribute("ctsp", ctsp);
-        request.getRequestDispatcher("/Views/ChiTietSanPham/edit.jsp")
-                .forward(request, response);
+        request.setAttribute("view","/Views/ChiTietSanPham/edit.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

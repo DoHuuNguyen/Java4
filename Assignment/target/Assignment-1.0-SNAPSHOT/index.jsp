@@ -6,53 +6,25 @@
     <title>Trang ChỦ</title>
 </head>
 <body>
-<div style="margin: 30px">
-    <table class="table table-striped-columns">
-        <thead>
-            <tr>
-                <th class="col">Mã</th>
-                <th class="col">Họ</th>
-                <th class="col">Tên Đệm</th>
-                <th class="col">Tên</th>
-                <th class="col">Ngày Sinh</th>
-                <th class="col">Địa Chỉ</th>
-                <th class="col">Số Điện Thoại</th>
-
-                <th class="col">Thành Phố</th>
-                <th class="col">Quốc Gia</th>
-            </tr>
-        </thead>
-        <tbody>
-           <tr>
-            <td class="col">1235</td>
-            <td class="col">Đỗ</td>
-            <td class="col">Hữu</td>
-            <td class="col">Nguyện</td>
-            <td class="col">2003/14/6</td>
-            <td class="col">Sơn Dương</td>
-            <td class="col">0395046998</td>
-            <td class="col">Tuyên Quang</td>
-            <td class="col">Việt Nam</td>
-        </tr>
-        </tbody>
-    </table>
+<form>
+<div style="margin: auto;margin-top: 50px ;border-radius: 10px; background-color: #c5e8ef;width: 700px">
+    <div style="margin: 10px">
+        <center><h3 style="color: #0a58ca ;margin: auto">Đăng Nhập</h3></center>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Số Điện thoại</label>
+            <div class="col-sm-10">
+                <input type="text"  class="form-control" id="staticEmail" name="sdt">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" name="matKhau">
+            </div>
+        </div>
+        <center><a class="btn btn-outline-primary" type="submit" href="/Assignment_war_exploded/Views/layout.jsp" >Đăng Nhập</a></center>
+    </div>
 </div>
-<ul class="nav justify-content-center">
-    <li class="nav-item">
-        <a class="nav-link active"  href="/Assignment_war_exploded/Views/layout.jsp">Layout</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ChucVu/create">Thêm Chức Vụ</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="NhanVien/create">Thêm Nhân Viên</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="CuaHang/create">Thêm Cửa Hàng</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ChiTietSanPham/create">Thêm Chi Tiết Sản Phẩm</a>
-    </li>
-</ul>
+</form>
 </body>
 </html>

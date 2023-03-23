@@ -45,7 +45,8 @@ public class CuaHangServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/Views/CuaHang/create.jsp").forward(request,response);
+        request.setAttribute("view","/Views/CuaHang/create.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -61,8 +62,8 @@ public class CuaHangServlet extends HttpServlet {
         String ma = request.getParameter("ma");
         QLCuaHang ch = this.chRepo.findByMa(ma);
         request.setAttribute("ch", ch);
-        request.getRequestDispatcher("/Views/CuaHang/edit.jsp")
-                .forward(request, response);
+        request.setAttribute("view","/Views/CuaHang/edit.jsp");
+        request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

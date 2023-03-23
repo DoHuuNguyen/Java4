@@ -19,9 +19,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Sản Phẩm</label>
             <div class="col-sm-10">
                 <select name="idSP" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="SP1">Sản Phẩm 1</option>
+                    <option value="SP2">Sản Phẩm 2</option>
+                    <option value="SP3">Sản Phẩm 3</option>
                 </select>
             </div>
         </div>
@@ -37,9 +37,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Nhà Sản Xuất</label>
             <div class="col-sm-10">
                 <select name="idNSX" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="NSX1">Nhà Sản Xuất 1</option>
+                    <option value="NSX2">Nhà Sản Xuất 2</option>
+                    <option value="NSX3">Nhà Sản Xuất 3</option>
                 </select>
             </div>
         </div>
@@ -48,9 +48,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Màu Sắc</label>
             <div class="col-sm-10">
                 <select name="idMauSac" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="red">Đỏ</option>
+                    <option value="yellow">Vàng</option>
+                    <option value="pink">Hồng</option>
                 </select>
             </div>
         </div>

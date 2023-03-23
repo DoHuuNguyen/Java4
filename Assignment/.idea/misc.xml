@@ -10,6 +10,9 @@
       </list>
     </option>
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/main/webapp/Views/layoutNv.jsp" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

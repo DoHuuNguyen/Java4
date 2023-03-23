@@ -18,10 +18,10 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">id Sản Phẩm</label>
             <div class="col-sm-10">
-                <select name="idSP" class="form-select">
-                    <option value="Hà Nội" ${ ctsp.idNSX == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
-                    <option value="Hồ Chí Minh" ${ ctsp.idNSX == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
-                    <option value="Hải Phòng" ${ ctsp.idNSX == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
+                <select name="idSP" class="form-select" disabled>
+                    <option value="SP1" ${ ctsp.idNSX == "SP1" ? "selected" : "" }>Sản Phẩm 1</option>
+                    <option value="SP2" ${ ctsp.idNSX == "SP2" ? "selected" : "" }>Sản Phẩm 2</option>
+                    <option value="SP3" ${ ctsp.idNSX == "SP3" ? "selected" : "" }>Sản Phẩm 3</option>
                 </select>
             </div>
         </div>
@@ -37,9 +37,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Nhà Sản Xuất</label>
             <div class="col-sm-10">
                 <select name="idNSX" class="form-select">
-                    <option value="Hà Nội" ${ ctsp.idNSX == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
-                    <option value="Hồ Chí Minh" ${ ctsp.idNSX == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
-                    <option value="Hải Phòng" ${ ctsp.idNSX == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
+                    <option value="NSX1" ${ ctsp.idNSX == "NSX1" ? "selected" : "" }>Nhà Sản Xuất 1</option>
+                    <option value="NSX2" ${ ctsp.idNSX == "NSX2" ? "selected" : "" }>Nhà Sản Xuất 2</option>
+                    <option value="NSX3" ${ ctsp.idNSX == "NSX3" ? "selected" : "" }>Nhà Sản Xuất 3</option>
                 </select>
             </div>
         </div>
@@ -48,9 +48,9 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">id Màu Sắc</label>
             <div class="col-sm-10">
                 <select name="idMauSac" class="form-select">
-                    <option value="Hà Nội" ${ ctsp.idMauSac == "Hà Nội" ? "selected" : "" }>Hà Nội</option>
-                    <option value="Hồ Chí Minh" ${ ctsp.idMauSac == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
-                    <option value="Hải Phòng" ${ ctsp.idMauSac == "Hải Phòng" ? "selected" : "" }>Hải Phòng</option>
+                    <option value="red" ${ ctsp.idMauSac == "red" ? "selected" : "" }>Đỏ</option>
+                    <option value="yellow" ${ ctsp.idMauSac == "yellow" ? "selected" : "" }>Vàng</option>
+                    <option value="pink" ${ ctsp.idMauSac == "pink" ? "selected" : "" }>Hồng</option>
                 </select>
             </div>
         </div>
