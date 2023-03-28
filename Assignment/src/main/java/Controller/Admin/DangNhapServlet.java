@@ -1,8 +1,10 @@
 package Controller.Admin;
 
+import ViewModel.Account;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.apache.commons.beanutils.BeanUtils;
 import repository.AccountRepository;
 
 import java.io.IOException;
@@ -23,11 +25,18 @@ public class DangNhapServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Account ac = new Account("aaa","123","1");
+        this.dangNhap(request,response);
     }
     protected void dangNhap(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Account ac = new Account();
+            BeanUtils.populate(ac,request.getParameterMap());
+            request.setAttribute("a",this.accRepo.check(ac));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        //this.accRepo.check()
     }
 
 }
