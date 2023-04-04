@@ -1,45 +1,67 @@
 package repository;
 
+import DomainModel.ChucVu;
+import DomainModel.KhachHang;
 import ViewModel.QLChucVu;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import utils.HibernateUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChucVuRepository {
-    private ArrayList<QLChucVu> list;
+    private Session hSession;
 
-    public ChucVuRepository (){
-        this.list = new ArrayList<>();
+    public ChucVuRepository(){
+        this.hSession = HibernateUtils.getFACTORY().openSession();
     }
-
-    public void insert(QLChucVu cv){
-        list.add(cv);
-    }
-    public void update(QLChucVu cv){
-        for (int i = 0; i < list.size(); i++) {
-            QLChucVu item = list.get(i);
-            if(item.getMa().equals(cv.getMa())) {
-                list.set(i, cv);
-            }
+    public void insert(ChucVu kh){
+        Transaction transaction = this.hSession.getTransaction();
+        try{
+            transaction.begin();
+            hSession.persist(kh);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
         }
     }
-    public void delete(QLChucVu cv){
-        for (int i = 0; i < list.size(); i++) {
-            QLChucVu item = list.get(i);
-            if(item.getMa().equals(cv.getMa())) {
-                list.remove(cv);
-            }
+    public void update(ChucVu kh){
+        Transaction transaction = this.hSession.getTransaction();
+        try {
+            transaction.begin();
+            hSession.merge(kh);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
         }
     }
-    public ArrayList<QLChucVu> findAll(){
-        return list;
-    }
-    public QLChucVu findByMa(String ma){
-        for (int i = 0; i < list.size(); i++) {
-            QLChucVu item = list.get(i);
-            if(item.getMa().equals(ma)){
-                return list.get(i);
-            }
+    public void delete(ChucVu kh){
+        Transaction transaction = this.hSession.getTransaction();
+        try {
+            transaction.begin();
+            hSession.delete(kh);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
         }
-        return null;
+    }
+    public List<ChucVu> findAll(){
+        String hql = "SELECT kh FROM ChucVu kh";
+        TypedQuery<ChucVu> query =this.hSession.createQuery(hql,ChucVu.class);
+        return query.getResultList();
+    }
+    public ChucVu findByMa(String ma){
+        String hql = "SELECT kh FROM ChucVu kh WHERE kh.Ma = ?1";
+        TypedQuery<ChucVu> query = this.hSession.createQuery(hql,ChucVu.class);
+        query.setParameter(1,ma);
+        return query.getSingleResult();
+    }
+    public ChucVu findByID(String id){
+        return hSession.find(ChucVu.class,id);
     }
 }

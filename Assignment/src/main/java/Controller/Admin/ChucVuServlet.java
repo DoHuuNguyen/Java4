@@ -1,7 +1,6 @@
 package Controller.Admin;
 
-import ViewModel.QLChucVu;
-import ViewModel.QLKhachHang;
+import DomainModel.ChucVu;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -54,7 +53,7 @@ public class ChucVuServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChucVu cv = new QLChucVu();
+            ChucVu cv = new ChucVu();
             BeanUtils.populate(cv, request.getParameterMap());
             this.cvRepo.insert(cv);
         }catch (Exception e){
@@ -64,14 +63,14 @@ public class ChucVuServlet extends HttpServlet {
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLChucVu cv = this.cvRepo.findByMa(ma);
+        ChucVu cv = this.cvRepo.findByMa(ma);
         request.setAttribute("cv", cv);
         request.setAttribute("view","/Views/ChucVu/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChucVu cv = new QLChucVu();
+            ChucVu cv = new ChucVu();
             BeanUtils.populate(cv, request.getParameterMap());
             this.cvRepo.update(cv);
         }catch (Exception e){
@@ -82,7 +81,7 @@ public class ChucVuServlet extends HttpServlet {
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLChucVu cv = this.cvRepo.findByMa(ma);
+        ChucVu cv = this.cvRepo.findByMa(ma);
         this.cvRepo.delete(cv);
         response.sendRedirect("../ChucVu/index");
     }protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
