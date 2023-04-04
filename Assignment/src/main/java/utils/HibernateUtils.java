@@ -1,5 +1,8 @@
 package utils;
 
+import DomainModel.ChucVu;
+import DomainModel.CuaHang;
+import DomainModel.DongSP;
 import DomainModel.KhachHang;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -25,6 +28,9 @@ public class HibernateUtils {
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(KhachHang.class);
+        conf.addAnnotatedClass(ChucVu.class);
+        conf.addAnnotatedClass(CuaHang.class);
+        conf.addAnnotatedClass(DongSP.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);

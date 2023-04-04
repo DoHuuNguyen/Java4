@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.CuaHang;
 import ViewModel.QLChucVu;
 import ViewModel.QLCuaHang;
 import ViewModel.QLKhachHang;
@@ -50,7 +51,7 @@ public class CuaHangServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLCuaHang ch = new QLCuaHang();
+            CuaHang ch = new CuaHang();
             BeanUtils.populate(ch, request.getParameterMap());
             this.chRepo.insert(ch);
         }catch (Exception e){
@@ -60,14 +61,14 @@ public class CuaHangServlet extends HttpServlet {
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLCuaHang ch = this.chRepo.findByMa(ma);
+        CuaHang ch = this.chRepo.findByMa(ma);
         request.setAttribute("ch", ch);
         request.setAttribute("view","/Views/CuaHang/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLCuaHang ch = new QLCuaHang();
+            CuaHang ch = new CuaHang();
             BeanUtils.populate(ch, request.getParameterMap());
             this.chRepo.update(ch);
         }catch (Exception e){
@@ -78,7 +79,7 @@ public class CuaHangServlet extends HttpServlet {
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLCuaHang ch = this.chRepo.findByMa(ma);
+        CuaHang ch = this.chRepo.findByMa(ma);
         this.chRepo.delete(ch);
         response.sendRedirect("../CuaHang/index");
     }
