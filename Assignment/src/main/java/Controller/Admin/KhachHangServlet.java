@@ -1,6 +1,6 @@
 package Controller.Admin;
 
-import ViewModel.QLKhachHang;
+import DomainModel.KhachHang;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -48,7 +48,7 @@ public class KhachHangServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLKhachHang kh = new QLKhachHang();
+            KhachHang kh = new KhachHang();
             BeanUtils.populate(kh, request.getParameterMap());
             this.khRepo.insert(kh);
         }catch (Exception e){
@@ -64,20 +64,20 @@ public class KhachHangServlet extends HttpServlet {
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
         String ma = req.getParameter("ma");
         System.out.println(ma);
-        QLKhachHang kh = this.khRepo.findByMa(ma);
+        KhachHang kh = this.khRepo.findByMa(ma);
         this.khRepo.delete(kh);
         resp.sendRedirect("../KhachHang/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLKhachHang kh = this.khRepo.findByMa(ma);
+        KhachHang kh = this.khRepo.findByMa(ma);
         request.setAttribute("kh", kh);
         request.setAttribute("view","/Views/KhachHang/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         try {
-            QLKhachHang kh = new QLKhachHang();
+            KhachHang kh = new KhachHang    ();
             BeanUtils.populate(kh, request.getParameterMap());
             this.khRepo.update(kh);
         }catch (Exception e){

@@ -9,9 +9,5 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<form>
-    <input type="text">
-    <button>nhấn vào điisss</button>
-</form>
 </body>
 </html>

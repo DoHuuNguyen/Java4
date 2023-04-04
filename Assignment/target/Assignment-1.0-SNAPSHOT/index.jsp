@@ -22,7 +22,7 @@
                 <input type="password" class="form-control" id="inputPassword" name="matKhau">
             </div>
         </div>
-        <center><a class="btn btn-outline-primary" type="submit" ${ a == true ? href="/Assignment_war_exploded/Views/layout.jsp" : ""} >Đăng Nhập</a></center>
+        <center><button type="submit">Đăng nhập</button></center>
     </div>
 </div>
 </form>
