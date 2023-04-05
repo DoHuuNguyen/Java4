@@ -14,7 +14,7 @@ import repository.NhanVienRepository;
 
 import java.io.IOException;
 
-@WebServlet({"/Login"})
+@WebServlet({"/login"})
 public class LoginServlet extends HttpServlet {
     private NhanVienRepository nvRepo = new NhanVienRepository();
     @Override
@@ -22,8 +22,8 @@ public class LoginServlet extends HttpServlet {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        request.setAttribute("view", "/views/login.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
+        request.setAttribute("view", "/Views/Login.jsp");
+        request.getRequestDispatcher("/Views/Login.jsp")
                 .forward(request, response);
     }
 
@@ -38,10 +38,10 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if (nv == null) {
             session.setAttribute("errorMessage", "Sai tài khoản hoặc mật khẩu");
-            response.sendRedirect("/SP23B2_SOF3011_IT17311_war_exploded/login");
+            response.sendRedirect("/Assignment_war_exploded/login");
         } else {
             session.setAttribute("nv", nv);
-            response.sendRedirect("/SP23B2_SOF3011_IT17311_war_exploded/khach-hang/index");
+            response.sendRedirect("/Assignment_war_exploded/KhachHang/index");
         }
     }
 }

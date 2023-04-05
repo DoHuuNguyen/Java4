@@ -68,7 +68,8 @@ public class CuaHangServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            CuaHang ch = new CuaHang();
+            String ma = request.getParameter("ma");
+            CuaHang ch = this.chRepo.findByMa(ma);
             BeanUtils.populate(ch, request.getParameterMap());
             this.chRepo.update(ch);
         }catch (Exception e){

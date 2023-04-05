@@ -75,8 +75,9 @@ public class NSXServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            NSX nsx = new NSX();
-            BeanUtils.populate(nsx, request.getParameterMap());
+            String ma = request.getParameter("ma");
+            NSX nsx = this.nsxRepo.findByMa(ma)
+;            BeanUtils.populate(nsx, request.getParameterMap());
             this.nsxRepo.update(nsx);
         }catch (Exception e){
             e.printStackTrace();

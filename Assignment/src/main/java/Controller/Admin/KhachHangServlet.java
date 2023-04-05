@@ -77,7 +77,8 @@ public class KhachHangServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         try {
-            KhachHang kh = new KhachHang();
+            String ma = request.getParameter("ma");
+            KhachHang kh = this.khRepo.findByMa(ma);
             BeanUtils.populate(kh, request.getParameterMap());
             this.khRepo.update(kh);
         }catch (Exception e){

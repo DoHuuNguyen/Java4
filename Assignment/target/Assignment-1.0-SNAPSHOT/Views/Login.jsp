@@ -8,11 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  session="true" %>
 <html>
 <head>
+    <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
     <title>Login</title>
 </head>
 <body>
-<div class="alert alert-danger">${ errorMessage }</div>
-<form method="post" action="/SP23B2_SOF3011_IT17311_war_exploded/login">
+
+<form method="post" action="/Assignment_war_exploded/login">
+    <div class="alert alert-danger"><center>${ errorMessage }</center></div>
     <div style="margin: auto;margin-top: 50px ;border-radius: 10px; background-color: #c5e8ef;width: 700px">
         <div style="margin: 10px">
             <center><h3 style="color: #0a58ca ;margin: auto">Đăng Nhập</h3></center>
@@ -32,5 +34,6 @@
         </div>
     </div>
 </form>
+<script src="/Assignment_war_exploded/js/bootstrap.min.js"></script>
 </body>
 </html>

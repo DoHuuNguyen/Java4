@@ -74,7 +74,8 @@ public class DongSPServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            DongSP dong = new DongSP();
+            String ma = request.getParameter("ma");
+            DongSP dong = this.dongRepo.findByMa(ma);
             BeanUtils.populate(dong, request.getParameterMap());
             this.dongRepo.update(dong);
         }catch (Exception e){

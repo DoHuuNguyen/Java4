@@ -33,11 +33,9 @@
                 <th class="col">Ngày Sinh</th>
                 <th class="col">Địa Chỉ</th>
                 <th class="col">Số Điện Thoại</th>
-                <th class="col">Mật Khẩu</th>
-                <th class="col">ID Cửa Hàng</th>
-                <th class="col">ID Chức Vụ</th>
-                <th class="col">Thành Phố</th>
-                <th class="col">Quốc Gia</th>
+                <th class="col"> Cửa Hàng</th>
+                <th class="col"> Chức Vụ</th>
+                <th class="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -51,10 +49,8 @@
                     <td class="col">${nv.ngaySinh}</td>
                     <td class="col">${nv.diaChi}</td>
                     <td class="col">${nv.sdt}</td>
-                    <td class="col">${nv.idCuaHang}</td>
-                    <td class="col">${nv.idChucVu}</td>
-                    <td class="col">${nv.thanhPho}</td>
-                    <td class="col">${nv.quocGia}</td>
+                    <td class="col">${nv.cuaHang.ten}</td>
+                    <td class="col">${nv.chucVu.ten}</td>
                     <td class="col"><a class="btn btn-primary" href="../NhanVien/edit?ma=${nv.ma}">Sửa</a>
                         <a class="btn btn-primary" href="../NhanVien/delete?ma=${nv.ma}">Xóa</a></td>
                 </tr>

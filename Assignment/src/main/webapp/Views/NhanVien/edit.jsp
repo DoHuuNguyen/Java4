@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
@@ -91,50 +93,36 @@
         <%--            --%>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">IdCuaHang</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Cửa Hàng</label>
             <div class="col-sm-10">
-                <select name="idCuaHang" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        name="maCuaHang"
+                >
+                    <c:forEach items="${listCuaHang}" var="x">
+                        <option value="${x.ma}" ${x.id==nv.cuaHang.id?"selected":""} >${x.ten}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
         <%--            --%>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">IdChucVu</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Chức Vụ</label>
             <div class="col-sm-10">
-                <select name="idChucVu" class="form-select">
-                    <option value="Hà Nội">Trưởng phòng</option>
-                    <option value="Hồ Chí Minh">Nhân viên</option>
+                <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        name="maChucVu"
+                >
+                    <c:forEach items="${listChucVu}" var="x">
+                        <option value="${x.ma}" ${x.id==nv.chucVu.id?"selected":""}>${x.ten}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
-        <%--            --%>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Quốc Gia</label>
-            <div class="col-sm-10">
-                <select name="quocGia" class="form-select">
-                    <option value="Việt Nam" selected>Việt Nam</option>
-                    <option value="Mỹ">Mỹ</option>
-                    <option value="Hàn Quốc">Hàn Quốc</option>
-                </select>
-            </div>
-        </div>
-        <%--            --%>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Thành Phố</label>
-            <div class="col-sm-10">
-                <select name="thanhPho" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
-                </select>
-            </div>
-        </div>
-        <%--            --%>
-        <button type="submit">Thêm</button>
+        <button type="submit" class="btn btn-outline-success">Sửa</button>
     </div>
 </form>
 <script src="/Assignment_war_exploded/js/bootstrap.min.js"></script>

@@ -1,5 +1,7 @@
 package Controller.Admin;
 
+import DomainModel.ChucVu;
+import DomainModel.CuaHang;
 import DomainModel.NhanVien;
 import ViewModel.QLKhachHang;
 import ViewModel.QLNhanVien;
@@ -47,17 +49,26 @@ public class NhanVienServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("listChucVu",nvRepo.getAllChucVu());
+        request.setAttribute("listCuaHang",nvRepo.getAllCuaHang());
         request.setAttribute("view","/Views/NhanVien/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        NhanVien nv = new NhanVien();
         try {
-            NhanVien nv = new NhanVien();
+
             BeanUtils.populate(nv, request.getParameterMap());
             this.nvRepo.insert(nv);
         }catch (Exception e){
             e.printStackTrace();
         }
+        String maCuaHang = request.getParameter("maCuaHang");
+        String maChucVu = request.getParameter("maChucVu");
+        CuaHang cuaHang = nvRepo.findCuaHangByMa(maCuaHang);
+        ChucVu chucVu = nvRepo.findChucVuByMa(maChucVu);
+        nv.setChucVu(chucVu);
+        nv.setCuaHang(cuaHang);
         response.sendRedirect("../NhanVien/index");
     }
     protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,13 +86,16 @@ public class NhanVienServlet extends HttpServlet {
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         NhanVien nv = this.nvRepo.findByMa(ma);
+        request.setAttribute("listChucVu",nvRepo.getAllChucVu());
+        request.setAttribute("listCuaHang",nvRepo.getAllCuaHang());
         request.setAttribute("nv", nv);
         request.setAttribute("view","/Views/NhanVien/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         try {
-            NhanVien nv = new NhanVien();
+            String ma = request.getParameter("ma");
+            NhanVien nv = this.nvRepo.findByMa(ma);
             BeanUtils.populate(nv, request.getParameterMap());
             this.nvRepo.update(nv);
         }catch (Exception e){

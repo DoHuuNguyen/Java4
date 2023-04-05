@@ -49,6 +49,9 @@
           <li class="nav-item">
             <a class="nav-link" href="../NhaSanXuat/index">Nhà Sản Xuất</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../NhanVien/index">Nhân Viên</a>
+          </li>
         </ul>
       </div>
     </div>

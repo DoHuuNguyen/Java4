@@ -18,14 +18,12 @@
         <c:if test="${f:length(dsctsp)!=0}">
             <thead>
             <tr>
-                <th class="col">Id Sản Phẩm</th>
-                <th class="col">Tên Sản Phẩm </th>
-                <th class="col">Id Nhà Sản Xuất</th>
-                <th class="col">Id Màu Sắc</th>
-                <th class="col">Id Dòng Sản Phẩm</th>
+                <th class="col">Sản Phẩm</th>
+                <th class="col">Nhà Sản Xuất</th>
+                <th class="col">Màu Sắc</th>
+                <th class="col">Dòng Sản Phẩm</th>
                 <th class="col">Năm Bảo Hành</th>
                 <th class="col">Mô Tả</th>
-
                 <th class="col">Số Lượng </th>
                 <th class="col">Giá Nhập</th>
                 <th class="col">Giá Bán</th>
@@ -34,18 +32,17 @@
             <tbody>
             <c:forEach items="${dsctsp}" var="kh">
                 <tr>
-                    <td class="col">${kh.idSP}</td>
-                    <td class="col">${kh.tenSp}</td>
-                    <td class="col">${kh.idNSX}</td>
-                    <td class="col">${kh.idMauSac}</td>
-                    <td class="col">${kh.idDongSP}</td>
-                    <td class="col">${kh.namBh}</td>
+                    <td class="col">${kh.sanPham.ten}</td>
+                    <td class="col">${kh.nsx.ten}</td>
+                    <td class="col">${kh.mauSac.ten}</td>
+                    <td class="col">${kh.dongSP.ten}</td>
+                    <td class="col">${kh.namBH}</td>
                     <td class="col">${kh.moTa}</td>
-                    <td class="col">${kh.soLuong}</td>
+                    <td class="col">${kh.soLuongTon}</td>
                     <td class="col">${kh.giaNhap}</td>
                     <td class="col">${kh.giaBan}</td>
-                    <td class="col"><a class="btn btn-primary" href="../ChiTietSanPham/edit?idSP=${kh.idSP}">Sửa</a>
-                        <a class="btn btn-primary" href="../ChiTietSanPham/delete?idSP=${kh.idSP}">Xóa</a></td>
+                    <td class="col"><a class="btn btn-primary" href="../ChiTietSanPham/edit?idSP=${kh.id}">Sửa</a>
+                        <a class="btn btn-primary" href="../ChiTietSanPham/delete?idSP=${kh.id}">Xóa</a></td>
                 </tr>
             </c:forEach>
             </tbody>

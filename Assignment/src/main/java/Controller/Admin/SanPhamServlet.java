@@ -72,7 +72,8 @@ public class SanPhamServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            SanPham sp = new SanPham();
+            String ma = request.getParameter("ma");
+            SanPham sp = this.spRepo.findByMa(ma);
             BeanUtils.populate(sp, request.getParameterMap());
             this.spRepo.update(sp);
         }catch (Exception e){

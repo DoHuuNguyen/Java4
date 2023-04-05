@@ -74,7 +74,8 @@ public class MauSacServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            MauSac ms = new MauSac();
+            String ma = request.getParameter("ma");
+            MauSac ms = this.msRepo.findByMa(ma);
             BeanUtils.populate(ms, request.getParameterMap());
             this.msRepo.update(ms);
         }catch (Exception e){

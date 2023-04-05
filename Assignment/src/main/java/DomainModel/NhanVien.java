@@ -60,6 +60,7 @@ public class NhanVien implements Serializable {
     @JoinColumn(name = "IdCV")
     private ChucVu chucVu;
 
+
     @OneToMany(mappedBy = "nhanVien")
     private List<HoaDon> listHoaDon;
 

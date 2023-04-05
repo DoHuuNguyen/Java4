@@ -59,6 +59,7 @@ public class ChucVuServlet extends HttpServlet {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         response.sendRedirect("../ChucVu/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,7 +71,8 @@ public class ChucVuServlet extends HttpServlet {
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            ChucVu cv = new ChucVu();
+            String ma = request.getParameter("ma");
+            ChucVu cv = this.cvRepo.findByMa(ma);
             BeanUtils.populate(cv, request.getParameterMap());
             this.cvRepo.update(cv);
         }catch (Exception e){

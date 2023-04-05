@@ -1,9 +1,12 @@
 package repository;
 
+import DomainModel.ChucVu;
+import DomainModel.CuaHang;
 import DomainModel.NhanVien;
 import ViewModel.QLKhachHang;
 import ViewModel.QLNhanVien;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -67,7 +70,7 @@ public class NhanVienRepository {
     }
     public NhanVien login(String ma, String matKhau)
     {
-        String hql = "SELECT nv FROM NhanVien nv WHERE nv.ma = ?1 AND nv.mat_khau = ?2";
+        String hql = "SELECT nv FROM NhanVien nv WHERE nv.ma = ?1 AND nv.matKhau = ?2";
         TypedQuery<NhanVien> query = this.hSession.createQuery(hql, NhanVien.class);
         query.setParameter(1, ma);
         query.setParameter(2, matKhau);
@@ -78,5 +81,35 @@ public class NhanVienRepository {
             e.printStackTrace();
             return null;
         }
+    }
+    public CuaHang findCuaHangByMa(String ma) {
+        Query query = hSession.createQuery("select k from CuaHang k where k.ma =:ma ");
+        query.setParameter("ma", ma);
+        try {
+            CuaHang ms = (CuaHang) query.getSingleResult();
+            return ms;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    public ChucVu findChucVuByMa(String ma) {
+        Query query = hSession.createQuery("select k from ChucVu k where k.ma =:ma ");
+        query.setParameter("ma", ma);
+        try {
+            ChucVu ms = (ChucVu) query.getSingleResult();
+            return ms;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    public List<ChucVu> getAllChucVu() {
+        Session session = HibernateUtils.getFACTORY().openSession();
+        Query query = session.createQuery("select ms From ChucVu ms ", ChucVu.class);
+        return query.getResultList();
+    }
+    public List<CuaHang> getAllCuaHang() {
+        Session session = HibernateUtils.getFACTORY().openSession();
+        Query query = session.createQuery("select ms From CuaHang ms ", CuaHang.class);
+        return query.getResultList();
     }
 }

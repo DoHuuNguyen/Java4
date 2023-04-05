@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
@@ -16,12 +18,16 @@
     <div style="margin: 20px">
         <center><h1>Chi Tiết Sản Phẩm</h1></center>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">id Sản Phẩm</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"> Sản Phẩm</label>
             <div class="col-sm-10">
-                <select name="idSP" class="form-select">
-                    <option value="SP1">Sản Phẩm 1</option>
-                    <option value="SP2">Sản Phẩm 2</option>
-                    <option value="SP3">Sản Phẩm 3</option>
+                <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        name="maSanPham"
+                >
+                    <c:forEach items="${listSanPham}" var="x">
+                        <option value="${x.ma}">${x.ten}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
@@ -34,34 +40,46 @@
         </div>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">id Nhà Sản Xuất</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label"> Nhà Sản Xuất</label>
             <div class="col-sm-10">
-                <select name="idNSX" class="form-select">
-                    <option value="NSX1">Nhà Sản Xuất 1</option>
-                    <option value="NSX2">Nhà Sản Xuất 2</option>
-                    <option value="NSX3">Nhà Sản Xuất 3</option>
+                <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        name="maNSX"
+                >
+                    <c:forEach items="${listNSX}" var="x">
+                        <option value="${x.ma}">${x.ten}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">id Màu Sắc</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Màu Sắc</label>
             <div class="col-sm-10">
-                <select name="idMauSac" class="form-select">
-                    <option value="red">Đỏ</option>
-                    <option value="yellow">Vàng</option>
-                    <option value="pink">Hồng</option>
+                <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        name="maMauSac"
+                >
+                    <c:forEach items="${listMauSac}" var="x">
+                        <option value="${x.ma}">${x.ten}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">id Dong Sản Phẩm</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Dong Sản Phẩm</label>
             <div class="col-sm-10">
-                <select name="idDongSP" class="form-select">
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Hải Phòng">Hải Phòng</option>
+                <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        name="maDongSP"
+                >
+                    <c:forEach items="${listDongSP}" var="x">
+                        <option value="${x.ma}">${x.ten}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
@@ -79,28 +97,18 @@
                 <input type="text" class="form-control" name="moTa">
             </div>
         </div>
-        <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="soLuong">
             </div>
         </div>
-        <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Nhập</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="giaNhap">
             </div>
         </div>
-        <%--            --%>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Giá Bán</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name="giaBan">
-            </div>
-        </div>
-        <%--            --%>
         <button type="submit">Thêm</button>
     </div>
 </form>
