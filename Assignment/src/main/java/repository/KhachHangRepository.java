@@ -55,7 +55,7 @@ public class KhachHangRepository {
         return query.getResultList();
     }
     public KhachHang findByMa(String ma){
-        String hql = "SELECT kh FROM KhachHang kh WHERE kh.Ma = ?1";
+        String hql = "SELECT kh FROM KhachHang kh WHERE kh.ma = ?1";
         TypedQuery<KhachHang> query = this.hSession.createQuery(hql,KhachHang.class);
         query.setParameter(1,ma);
         return query.getSingleResult();

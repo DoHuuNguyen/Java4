@@ -1,87 +1,43 @@
 package DomainModel;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name="CuaHang")
-public class CuaHang {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "CuaHang")
+public class CuaHang implements Serializable {
     @Id
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String Id;
+    @GeneratedValue
+    @Column(name = "Id")
+    private UUID id;
 
-    @Column(name="Ma")
-    private String Ma;
+    @Column(name = "Ma")
+    private String ma;
 
-    @Column(name="Ten")
-    private String Ten;
+    @Column(name = "Ten")
+    private String ten;
 
-    @Column(name="DiaChi")
-    private String DiaChi;
+    @Column(name = "DiaChi")
+    private String diaChi;
 
-    @Column(name="ThanhPho")
-    private String ThanhPho;
+    @Column(name = "ThanhPho")
+    private String thanhPho;
 
-    @Column(name="QuocGia")
-    private String QuocGia;
+    @Column(name = "QuocGia")
+    private String quocGia;
 
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getMa() {
-        return Ma;
-    }
-
-    public void setMa(String ma) {
-        Ma = ma;
-    }
-
-    public String getTen() {
-        return Ten;
-    }
-
-    public void setTen(String ten) {
-        Ten = ten;
-    }
-
-    public String getDiaChi() {
-        return DiaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        DiaChi = diaChi;
-    }
-
-    public String getThanhPho() {
-        return ThanhPho;
-    }
-
-    public void setThanhPho(String thanhPho) {
-        ThanhPho = thanhPho;
-    }
-
-    public String getQuocGia() {
-        return QuocGia;
-    }
-
-    public void setQuocGia(String quocGia) {
-        QuocGia = quocGia;
-    }
-
-    public CuaHang() {
-    }
-
-    public CuaHang(String id, String ma, String ten, String diaChi, String thanhPho, String quocGia) {
-        Id = id;
-        Ma = ma;
-        Ten = ten;
-        DiaChi = diaChi;
-        ThanhPho = thanhPho;
-        QuocGia = quocGia;
-    }
+    @OneToMany(mappedBy = "cuaHang")
+    private List<NhanVien> listNhanVien;
 }

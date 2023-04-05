@@ -9,12 +9,12 @@
 <html>
 <head>
     <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
-    <title>Chức Vụ</title>
+    <title>Nhà Sản Xuất</title>
 </head>
 <body>
 <form method="post" action="/Assignment_war_exploded/NhaSanXuat/store" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
     <div style="margin: 20px">
-        <center><h1>Chức Vụ</h1></center><br>
+        <center><h1>Nhà Sản Xuất</h1></center><br>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Mã</label>
             <div class="col-sm-10">

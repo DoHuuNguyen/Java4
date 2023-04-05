@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.MauSac;
 import ViewModel.QLChucVu;
 import ViewModel.QLMauSac;
 import jakarta.servlet.ServletException;
@@ -56,7 +57,7 @@ public class MauSacServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLMauSac ms = new QLMauSac();
+            MauSac ms = new MauSac();
             BeanUtils.populate(ms, request.getParameterMap());
             this.msRepo.insert(ms);
         }catch (Exception e){
@@ -66,14 +67,14 @@ public class MauSacServlet extends HttpServlet {
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLMauSac ms = this.msRepo.findByMa(ma);
+        MauSac ms = this.msRepo.findByMa(ma);
         request.setAttribute("ms", ms);
         request.setAttribute("view","/Views/MauSac/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLMauSac ms = new QLMauSac();
+            MauSac ms = new MauSac();
             BeanUtils.populate(ms, request.getParameterMap());
             this.msRepo.update(ms);
         }catch (Exception e){
@@ -84,7 +85,7 @@ public class MauSacServlet extends HttpServlet {
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLMauSac ms = this.msRepo.findByMa(ma);
+        MauSac ms = this.msRepo.findByMa(ma);
         this.msRepo.delete(ms);
         response.sendRedirect("../MauSac/index");
     }protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

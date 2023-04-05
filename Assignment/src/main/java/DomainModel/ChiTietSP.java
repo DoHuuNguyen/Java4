@@ -2,125 +2,65 @@ package DomainModel;
 
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
 
 
 @Entity
-@Table(name="ChiTietSP")
-public class ChiTietSP {
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Table(name = "ChiTietsp")
+public class ChiTietSP implements Serializable {
     @Id
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String Id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "Id")
+    private UUID id;
 
-    @Column(name="IdSP")
-    private String IdSP;
+    @ManyToOne
+    @JoinColumn(name = "IdSP")
+    private SanPham sanPham;
 
-    @Column(name="IdNsx")
-    private String IdNsx;
+    @ManyToOne
+    @JoinColumn(name = "IdNSX")
+    private NSX nsx;
 
-    @Column(name="IdDongSP")
-    private String IdDongSP;
+    @ManyToOne
+    @JoinColumn(name = "IdMauSac")
+    private MauSac mauSac;
 
-    @Column(name="NamBH")
-    private String namBH;
+    @ManyToOne
+    @JoinColumn(name = "IdDongSP")
+    private DongSP dongSP;
 
-    @Column(name="MoTa")
+    @Column(name = "NamBH")
+    private int namBH;
+
+    @Column(name = "MoTa")
     private String moTa;
 
-    @Column(name="SoLuongTon")
+    @Column(name = "SoLuongTon")
     private int soLuongTon;
 
-    @Column(name="GiaNhap")
-    private double DiaChi;
+    @Column(name = "GiaNhap")
+    private BigDecimal giaNhap;
 
-    @Column(name="GiaBan")
-    private double ThanhPho;
+    @Column(name = "giaBan")
+    private BigDecimal giaBan;
 
-    public ChiTietSP(String id, String idSP, String idNsx, String idDongSP, String namBH, String moTa, int soLuongTon, double diaChi, double thanhPho) {
-        Id = id;
-        IdSP = idSP;
-        IdNsx = idNsx;
-        IdDongSP = idDongSP;
-        this.namBH = namBH;
-        this.moTa = moTa;
-        this.soLuongTon = soLuongTon;
-        DiaChi = diaChi;
-        ThanhPho = thanhPho;
-    }
+    @Column(name = "images")
+    private String images;
 
-    public ChiTietSP() {
-    }
+    @OneToMany(mappedBy = "ChiTietSP")
+    private List<GioHangCT> listGioHangChiTiet;
 
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getIdSP() {
-        return IdSP;
-    }
-
-    public void setIdSP(String idSP) {
-        IdSP = idSP;
-    }
-
-    public String getIdNsx() {
-        return IdNsx;
-    }
-
-    public void setIdNsx(String idNsx) {
-        IdNsx = idNsx;
-    }
-
-    public String getIdDongSP() {
-        return IdDongSP;
-    }
-
-    public void setIdDongSP(String idDongSP) {
-        IdDongSP = idDongSP;
-    }
-
-    public String getNamBH() {
-        return namBH;
-    }
-
-    public void setNamBH(String namBH) {
-        this.namBH = namBH;
-    }
-
-    public String getMoTa() {
-        return moTa;
-    }
-
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
-    }
-
-    public int getSoLuongTon() {
-        return soLuongTon;
-    }
-
-    public void setSoLuongTon(int soLuongTon) {
-        this.soLuongTon = soLuongTon;
-    }
-
-    public double getDiaChi() {
-        return DiaChi;
-    }
-
-    public void setDiaChi(double diaChi) {
-        DiaChi = diaChi;
-    }
-
-    public double getThanhPho() {
-        return ThanhPho;
-    }
-
-    public void setThanhPho(double thanhPho) {
-        ThanhPho = thanhPho;
-    }
+    @OneToMany(mappedBy = "ChiTietSP")
+    private List<HoaDonCT> listHoaDonChiTiet;
 }

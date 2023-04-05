@@ -2,53 +2,34 @@ package DomainModel;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
-
 @Entity
-@Table(name="ChucVu")
-public class ChucVu {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "ChucVu")
+public class ChucVu implements Serializable {
     @Id
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    @GeneratedValue()
+    @Column(name = "Id")
+    private UUID id;
 
-    @Column(name="Ma")
-    private String Ma;
+    @Column(name = "Ma")
+    private String ma;
 
-    @Column(name="Ten")
-    private String Ten;
+    @Column(name = "Ten")
+    private String ten;
 
-    public UUID getId() {
-        return Id;
-    }
+    @OneToMany(mappedBy = "chucVu")
+    private List<NhanVien> listNhanVien;
 
-    public void setId(UUID id) {
-        Id = id;
-    }
-
-    public String getMa() {
-        return Ma;
-    }
-
-    public void setMa(String ma) {
-        Ma = ma;
-    }
-
-    public String getTen() {
-        return Ten;
-    }
-
-    public void setTen(String ten) {
-        Ten = ten;
-    }
-
-    public ChucVu(UUID id, String ma, String ten) {
-        Id = id;
-        Ma = ma;
-        Ten = ten;
-    }
-
-    public ChucVu() {
-    }
 }

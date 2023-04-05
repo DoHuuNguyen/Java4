@@ -1,46 +1,68 @@
 package repository;
 
+import DomainModel.SanPham;
 import ViewModel.QLMauSac;
 import ViewModel.QLSanPham;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import utils.HibernateUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SanPhamRepository {
-    private ArrayList<QLSanPham> list;
+    private Session hSession;
 
     public SanPhamRepository(){
-        this.list = new ArrayList<>();
+        this.hSession = HibernateUtils.getFACTORY().openSession();
+    }
+    public void insert(SanPham ms){
+        Transaction transaction = this.hSession.getTransaction();
+        try{
+            transaction.begin();
+            hSession.persist(ms);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+    }
+    public void update(SanPham ms){
+        Transaction transaction = this.hSession.getTransaction();
+        try {
+            transaction.begin();
+            hSession.merge(ms);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+    }
+    public void delete(SanPham ms){
+        Transaction transaction = this.hSession.getTransaction();
+        try {
+            transaction.begin();
+            hSession.delete(ms);
+            transaction.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+    }
+    public List<SanPham> findAll(){
+        String hql = "SELECT ms FROM MauSac ms";
+        TypedQuery<SanPham> query =this.hSession.createQuery(hql,SanPham.class);
+        return query.getResultList();
+    }
+    public SanPham findByMa(String ma){
+        String hql = "SELECT ms FROM SanPham ms WHERE ms.ma = ?1";
+        TypedQuery<SanPham> query = this.hSession.createQuery(hql,SanPham.class);
+        query.setParameter(1,ma);
+        return query.getSingleResult();
+    }
+    public SanPham findByID(String id){
+        return hSession.find(SanPham.class,id);
     }
 
-    public void insert(QLSanPham sp){
-        list.add(sp);
-    }
-    public void update(QLSanPham sp){
-        for (int i = 0; i < list.size(); i++) {
-            QLSanPham item = list.get(i);
-            if(item.getMa().equals(sp.getMa())) {
-                list.set(i, sp);
-            }
-        }
-    }
-    public void delete(QLSanPham sp){
-        for (int i = 0; i < list.size(); i++) {
-            QLSanPham item = list.get(i);
-            if(item.getMa().equals(sp.getMa())) {
-                list.remove(sp);
-            }
-        }
-    }
-    public ArrayList<QLSanPham> findAll(){
-        return list;
-    }
-    public QLSanPham findByMa(String ma){
-        for (int i = 0; i < list.size(); i++) {
-            QLSanPham item = list.get(i);
-            if(item.getMa().equals(ma)){
-                return list.get(i);
-            }
-        }
-        return null;
-    }
 }

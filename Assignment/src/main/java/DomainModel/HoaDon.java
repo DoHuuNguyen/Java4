@@ -1,54 +1,64 @@
 package DomainModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name="HoaDon")
-public class HoaDon {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "HoaDon")
+public class HoaDon implements Serializable {
     @Id
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String Id;
+    @GeneratedValue
+    @Column(name = "Id")
+    private UUID id;
 
-    @Column(name="IdKH")
-    private String IdKH;
+    @ManyToOne()
+    @JoinColumn(name = "IdKH")
+    private KhachHang khachHang;
 
-    @Column(name="IdNV")
-    private String IdNV;
+    @ManyToOne()
+    @JoinColumn(name = "IdNV")
+    private NhanVien nhanVien;
 
-    @Column(name="Ma")
+    @Column(name = "Ma")
     private String ma;
 
-    @Column(name="NgayTao")
+    @Column(name = "NgayTao")
     private Date ngayTao;
 
+    @Column(name = "NgayThanhToan")
+    private Date ngayThanhToan;
 
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
-//
-//    @Column(name="IdSP")
-//    private String IdSP;
+    @Column(name = "NgayShip")
+    private Date ngayShip;
 
+    @Column(name = "NgayNhan")
+    private Date ngayNhan;
+
+    @Column(name = "TinhTrang")
+    private int tinhTrang;
+
+    @Column(name = "TenNguoiNhan")
+    private String tenNguoiNhan;
+
+    @Column(name = "DiaChi")
+    private String diaChi;
+
+    @Column(name = "Sdt")
+    private String sdt;
+
+    @OneToMany(mappedBy = "hoaDon")
+    private List<HoaDonCT> listHoaDonChiTiet;
 
 }

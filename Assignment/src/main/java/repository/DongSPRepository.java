@@ -56,7 +56,7 @@ public class DongSPRepository {
         return query.getResultList();
     }
     public DongSP findByMa(String ma){
-        String hql = "SELECT kh FROM DongSP kh WHERE kh.Ma = ?1";
+        String hql = "SELECT kh FROM DongSP kh WHERE kh.ma = ?1";
         TypedQuery<DongSP> query = this.hSession.createQuery(hql,DongSP.class);
         query.setParameter(1,ma);
         return query.getSingleResult();

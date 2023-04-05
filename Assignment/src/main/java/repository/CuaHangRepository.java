@@ -56,7 +56,7 @@ public class CuaHangRepository {
         return query.getResultList();
     }
     public CuaHang findByMa(String ma){
-        String hql = "SELECT ch FROM CuaHang ch WHERE ch.Ma = ?1";
+        String hql = "SELECT ch FROM CuaHang ch WHERE ch.ma = ?1";
         TypedQuery<CuaHang> query = this.hSession.createQuery(hql,CuaHang.class);
         query.setParameter(1,ma);
         return query.getSingleResult();

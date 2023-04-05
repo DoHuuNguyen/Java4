@@ -53,7 +53,7 @@ public class ChucVuRepository {
         return query.getResultList();
     }
     public ChucVu findByMa(String ma){
-        String hql = "SELECT cv FROM ChucVu cv WHERE cv.Ma = ?1";
+        String hql = "SELECT cv FROM ChucVu cv WHERE cv.ma = ?1";
         TypedQuery<ChucVu> query = this.hSession.createQuery(hql,ChucVu.class);
         query.setParameter(1,ma);
         return query.getSingleResult();

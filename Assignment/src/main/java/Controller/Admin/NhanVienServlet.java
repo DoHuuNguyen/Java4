@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.NhanVien;
 import ViewModel.QLKhachHang;
 import ViewModel.QLNhanVien;
 import jakarta.servlet.*;
@@ -51,7 +52,7 @@ public class NhanVienServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLNhanVien nv = new QLNhanVien();
+            NhanVien nv = new NhanVien();
             BeanUtils.populate(nv, request.getParameterMap());
             this.nvRepo.insert(nv);
         }catch (Exception e){
@@ -67,20 +68,20 @@ public class NhanVienServlet extends HttpServlet {
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
         String ma = req.getParameter("ma");
         System.out.println(ma);
-        QLNhanVien nv = this.nvRepo.findByMa(ma);
+        NhanVien nv = this.nvRepo.findByMa(ma);
         this.nvRepo.delete(nv);
         resp.sendRedirect("../NhanVien/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLNhanVien nv = this.nvRepo.findByMa(ma);
+        NhanVien nv = this.nvRepo.findByMa(ma);
         request.setAttribute("nv", nv);
         request.setAttribute("view","/Views/NhanVien/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
         try {
-            QLNhanVien nv = new QLNhanVien();
+            NhanVien nv = new NhanVien();
             BeanUtils.populate(nv, request.getParameterMap());
             this.nvRepo.update(nv);
         }catch (Exception e){

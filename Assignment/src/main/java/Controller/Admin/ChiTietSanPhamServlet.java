@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.ChiTietSP;
 import ViewModel.QLChiTietSP;
 
 import jakarta.servlet.*;
@@ -53,7 +54,7 @@ public class ChiTietSanPhamServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChiTietSP ctsp = new QLChiTietSP();
+            ChiTietSP ctsp = new ChiTietSP();
             BeanUtils.populate(ctsp, request.getParameterMap());
             this.ctspRepo.insert(ctsp);
         }catch (Exception e){
@@ -69,20 +70,20 @@ public class ChiTietSanPhamServlet extends HttpServlet {
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
         String idSP = req.getParameter("idSP");
         System.out.println(idSP);
-        QLChiTietSP kh = this.ctspRepo.findByMa(idSP);
+        ChiTietSP kh = this.ctspRepo.findByID(idSP);
         this.ctspRepo.delete(kh);
         resp.sendRedirect("../ChiTietSanPham/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idSP = request.getParameter("idSP");
-        QLChiTietSP ctsp = this.ctspRepo.findByMa(idSP);
+        ChiTietSP ctsp = this.ctspRepo.findByID(idSP);
         request.setAttribute("ctsp", ctsp);
         request.setAttribute("view","/Views/ChiTietSanPham/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLChiTietSP ctsp = new QLChiTietSP();
+            ChiTietSP ctsp = new ChiTietSP();
             BeanUtils.populate(ctsp, request.getParameterMap());
             this.ctspRepo.update(ctsp);
         }catch (Exception e){

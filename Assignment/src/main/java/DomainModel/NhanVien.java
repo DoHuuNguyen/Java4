@@ -2,189 +2,67 @@ package DomainModel;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name="NhanVien")
-public class NhanVien {
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Table(name = "NhanVien")
+public class NhanVien implements Serializable {
     @Id
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String Id;
+    @GeneratedValue
+    @Column(name = "Id")
+    private UUID id;
 
-    @Column(name="Ma")
-    private String Ma;
+    @Column(name = "Ma")
+    private String ma;
 
-    @Column(name="Ten")
-    private String Ten;
+    @Column(name = "Ten")
+    private String ten;
 
-    @Column(name="TenDem")
-    private String TenDem;
+    @Column(name = "TenDem")
+    private String tenDem;
 
-    @Column(name="Ho")
-    private String Ho;
+    @Column(name = "Ho")
+    private String ho;
 
-    @Column(name="NgaySinh")
-    private Date NgaySinh;
+    @Column(name = "GioiTinh")
+    private String gioiTinh;
 
-    @Column(name="Sdt")
-    private String Sdt;
+    @Column(name = "NgaySinh")
+    private Date ngaySinh;
 
-    @Column(name="DiaChi")
-    private String DiaChi;
+    @Column(name = "DiaChi")
+    private String diaChi;
 
-    @Column(name="Sdt")
-    private String SDT;
+    @Column(name = "Sdt")
+    private String sdt;
 
-    @Column(name="MatKhau")
-    private String MatKhau;
+    @Column(name = "MatKhau")
+    private String matKhau;
 
+    @ManyToOne()
+    @JoinColumn(name = "IdCH")
+    private CuaHang cuaHang;
 
-    @Column(name="IdCH")
-    private String IdCH;
+    @ManyToOne()
+    @JoinColumn(name = "IdCV")
+    private ChucVu chucVu;
 
+    @OneToMany(mappedBy = "nhanVien")
+    private List<HoaDon> listHoaDon;
 
-    @Column(name="IdCV")
-    private String IdCV;
-
-
-    @Column(name="IdGuiBC")
-    private String idGuiBC;
-
-
-    @Column(name="TrangThai")
-    private String trangThai;
-
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getMa() {
-        return Ma;
-    }
-
-    public void setMa(String ma) {
-        Ma = ma;
-    }
-
-    public String getTen() {
-        return Ten;
-    }
-
-    public void setTen(String ten) {
-        Ten = ten;
-    }
-
-    public String getTenDem() {
-        return TenDem;
-    }
-
-    public void setTenDem(String tenDem) {
-        TenDem = tenDem;
-    }
-
-    public String getHo() {
-        return Ho;
-    }
-
-    public void setHo(String ho) {
-        Ho = ho;
-    }
-
-    public Date getNgaySinh() {
-        return NgaySinh;
-    }
-
-    public void setNgaySinh(Date ngaySinh) {
-        NgaySinh = ngaySinh;
-    }
-
-    public String getSdt() {
-        return Sdt;
-    }
-
-    public void setSdt(String sdt) {
-        Sdt = sdt;
-    }
-
-    public String getDiaChi() {
-        return DiaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        DiaChi = diaChi;
-    }
-
-    public String getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
-    }
-
-    public String getMatKhau() {
-        return MatKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
-    }
-
-    public String getIdCH() {
-        return IdCH;
-    }
-
-    public void setIdCH(String idCH) {
-        IdCH = idCH;
-    }
-
-    public String getIdCV() {
-        return IdCV;
-    }
-
-    public void setIdCV(String idCV) {
-        IdCV = idCV;
-    }
-
-    public String getIdGuiBC() {
-        return idGuiBC;
-    }
-
-    public void setIdGuiBC(String idGuiBC) {
-        this.idGuiBC = idGuiBC;
-    }
-
-    public String getTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    public NhanVien(String id, String ma, String ten, String tenDem, String ho, Date ngaySinh, String sdt, String diaChi, String SDT, String matKhau, String idCH, String idCV, String idGuiBC, String trangThai) {
-        Id = id;
-        Ma = ma;
-        Ten = ten;
-        TenDem = tenDem;
-        Ho = ho;
-        NgaySinh = ngaySinh;
-        Sdt = sdt;
-        DiaChi = diaChi;
-        this.SDT = SDT;
-        MatKhau = matKhau;
-        IdCH = idCH;
-        IdCV = idCV;
-        this.idGuiBC = idGuiBC;
-        this.trangThai = trangThai;
-    }
-
-    public NhanVien() {
-    }
+    @OneToMany(mappedBy = "nhanVien")
+    private List<GioHang> listGioHang;
 }

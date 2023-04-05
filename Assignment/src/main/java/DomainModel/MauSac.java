@@ -1,59 +1,41 @@
 package DomainModel;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name="MauSac")
-public class MauSac {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "MauSac")
+public class MauSac implements Serializable {
     @Id
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    @GeneratedValue
+    @Column(name = "Id")
+    private UUID id;
 
-    @Column(name="Ma")
-    private String Ma;
+    @Column(name = "Ma")
+    private String ma;
 
-    @Column(name="Ten")
-    private String Ten;
+    @Column(name = "Ten")
+    private String ten;
 
-    public UUID getId() {
-        return Id;
+    public MauSac(String ma, String ten) {
+        this.ma = ma;
+        this.ten = ten;
     }
 
-    public void setId(UUID id) {
-        Id = id;
-    }
-
-    public String getMa() {
-        return Ma;
-    }
-
-    public void setMa(String ma) {
-        Ma = ma;
-    }
-
-    public String getTen() {
-        return Ten;
-    }
-
-    public void setTen(String ten) {
-        Ten = ten;
-    }
-
-    public MauSac() {
-    }
-
-    public MauSac(UUID id, String ma, String ten) {
-        Id = id;
-        Ma = ma;
-        Ten = ten;
-    }
+    @OneToMany(mappedBy = "mauSac")
+    private List<ChiTietSP> listCTSanPham;
 }

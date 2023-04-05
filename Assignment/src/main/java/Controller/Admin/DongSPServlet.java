@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.DongSP;
 import ViewModel.QLChucVu;
 import ViewModel.QLDongSP;
 import jakarta.servlet.ServletException;
@@ -56,7 +57,7 @@ public class DongSPServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLDongSP dong = new QLDongSP();
+            DongSP dong = new DongSP();
             BeanUtils.populate(dong, request.getParameterMap());
             this.dongRepo.insert(dong);
         }catch (Exception e){
@@ -66,14 +67,14 @@ public class DongSPServlet extends HttpServlet {
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLDongSP dong = this.dongRepo.findByMa(ma);
+        DongSP dong = this.dongRepo.findByMa(ma);
         request.setAttribute("dong", dong);
         request.setAttribute("view","/Views/DongSP/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLDongSP dong = new QLDongSP();
+            DongSP dong = new DongSP();
             BeanUtils.populate(dong, request.getParameterMap());
             this.dongRepo.update(dong);
         }catch (Exception e){
@@ -84,7 +85,7 @@ public class DongSPServlet extends HttpServlet {
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLDongSP cv = this.dongRepo.findByMa(ma);
+        DongSP cv = this.dongRepo.findByMa(ma);
         this.dongRepo.delete(cv);
         response.sendRedirect("../DongSP/index");
     }protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

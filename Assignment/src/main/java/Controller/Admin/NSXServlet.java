@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.NSX;
 import ViewModel.QLNhaSanXuat;
 import ViewModel.QLSanPham;
 import jakarta.servlet.ServletException;
@@ -57,7 +58,7 @@ public class NSXServlet extends HttpServlet {
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLNhaSanXuat nsx = new QLNhaSanXuat();
+            NSX nsx = new NSX();
             BeanUtils.populate(nsx, request.getParameterMap());
             this.nsxRepo.insert(nsx);
         }catch (Exception e){
@@ -67,14 +68,14 @@ public class NSXServlet extends HttpServlet {
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLNhaSanXuat nsx = this.nsxRepo.findByMa(ma);
+        NSX nsx = this.nsxRepo.findByMa(ma);
         request.setAttribute("nsx", nsx);
         request.setAttribute("view","/Views/NhaSanXuat/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            QLNhaSanXuat nsx = new QLNhaSanXuat();
+            NSX nsx = new NSX();
             BeanUtils.populate(nsx, request.getParameterMap());
             this.nsxRepo.update(nsx);
         }catch (Exception e){
@@ -85,7 +86,7 @@ public class NSXServlet extends HttpServlet {
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         System.out.println(ma);
-        QLNhaSanXuat nsx = this.nsxRepo.findByMa(ma);
+        NSX nsx = this.nsxRepo.findByMa(ma);
         this.nsxRepo.delete(nsx);
         response.sendRedirect("../NhaSanXuat/index");
     }protected void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
