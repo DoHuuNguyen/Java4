@@ -26,7 +26,7 @@ public class HoaDonCT implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "IdChiTietSP", insertable = false, updatable = false)
-    private ChiTietSP CTSanPham;
+    private ChiTietSP ChiTietSP;
 
     @Column(name = "SoLuong")
     private int soLuong;

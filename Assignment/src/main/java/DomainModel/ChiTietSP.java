@@ -55,9 +55,6 @@ public class ChiTietSP implements Serializable {
     @Column(name = "giaBan")
     private BigDecimal giaBan;
 
-    @Column(name = "images")
-    private String images;
-
     @OneToMany(mappedBy = "ChiTietSP")
     private List<GioHangCT> listGioHangChiTiet;
 

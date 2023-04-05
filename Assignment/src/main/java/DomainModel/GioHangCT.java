@@ -27,7 +27,7 @@ public class GioHangCT implements Serializable {
 
     @ManyToOne()
     @JoinColumn(name = "IdChiTietSP",updatable = false,insertable = false)
-    private ChiTietSP CTSanPham;
+    private ChiTietSP ChiTietSP;
 
     @Column(name = "SoLuong")
     private Integer SoLuong;
@@ -38,16 +38,4 @@ public class GioHangCT implements Serializable {
     @Column(name = "DonGiaKhiGiam")
     private BigDecimal donGiaKhiGiam;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GioHangCT that = (GioHangCT) o;
-        return gioHangChiTietId == that.gioHangChiTietId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(gioHangChiTietId, gioHang, CTSanPham, SoLuong, donGia, donGiaKhiGiam);
-    }
 }

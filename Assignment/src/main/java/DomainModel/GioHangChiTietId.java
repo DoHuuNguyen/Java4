@@ -24,16 +24,4 @@ public class GioHangChiTietId implements Serializable {
     @Column(name = "IdChiTietSP")
     private UUID IdChiTietSP;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GioHangChiTietId that = (GioHangChiTietId) o;
-        return IdGioHang.equals(that.IdGioHang) && IdChiTietSP.equals(that.IdChiTietSP);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(IdGioHang, IdChiTietSP);
-    }
 }
