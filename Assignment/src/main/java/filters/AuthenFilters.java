@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter({
-//        "/KhachHang/*","/SanPham/*","/ChiTietSanPham/*","/ChucVu/*","/CuaHang/*","/DongSP/*","/MauSac/*","/NhanVien/*","/NhaSanXuat/*",
+        "/KhachHang/*","/SanPham/*","/ChiTietSanPham/*","/ChucVu/*","/CuaHang/*","/DongSP/*","/MauSac/*","/NhanVien/*","/NhaSanXuat/*",
 })
 public class AuthenFilters  implements Filter {
     @Override
@@ -20,7 +20,7 @@ public class AuthenFilters  implements Filter {
         HttpSession session = req.getSession();
         NhanVien nv = (NhanVien) session.getAttribute("nv");
         if (nv == null) {
-            res.sendRedirect("/SP23B2_SOF3011_IT17311_war_exploded/login");
+            res.sendRedirect("/Assignment_war_exploded/login");
         } else {
             filterChain.doFilter(req, res);
         }

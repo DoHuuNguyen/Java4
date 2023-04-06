@@ -20,9 +20,10 @@ import java.util.UUID;
 @Table(name = "ChiTietsp")
 public class ChiTietSP implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "Id")
-    private UUID id;
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Id" , columnDefinition="uniqueidentifier")
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "IdSP")

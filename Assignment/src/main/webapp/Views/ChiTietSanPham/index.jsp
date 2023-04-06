@@ -18,6 +18,7 @@
         <c:if test="${f:length(dsctsp)!=0}">
             <thead>
             <tr>
+                <th class="col">ID</th>
                 <th class="col">Sản Phẩm</th>
                 <th class="col">Nhà Sản Xuất</th>
                 <th class="col">Màu Sắc</th>
@@ -32,6 +33,7 @@
             <tbody>
             <c:forEach items="${dsctsp}" var="kh">
                 <tr>
+                    <td class="col">${kh.id}</td>
                     <td class="col">${kh.sanPham.ten}</td>
                     <td class="col">${kh.nsx.ten}</td>
                     <td class="col">${kh.mauSac.ten}</td>
@@ -41,12 +43,11 @@
                     <td class="col">${kh.soLuongTon}</td>
                     <td class="col">${kh.giaNhap}</td>
                     <td class="col">${kh.giaBan}</td>
-                    <td class="col"><a class="btn btn-primary" href="../ChiTietSanPham/edit?idSP=${kh.id}">Sửa</a>
-                        <a class="btn btn-primary" href="../ChiTietSanPham/delete?idSP=${kh.id}">Xóa</a></td>
+                    <td class="col"><a class="btn btn-primary" href="../ChiTietSanPham/edit?id=${kh.id}">Sửa</a>
+                        <a class="btn btn-primary" href="../ChiTietSanPham/delete?id=${kh.id}">Xóa</a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </c:if>
-
     </table>
 </div>

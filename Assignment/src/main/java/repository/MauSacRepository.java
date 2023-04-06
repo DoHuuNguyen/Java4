@@ -4,6 +4,7 @@ import DomainModel.KhachHang;
 import DomainModel.MauSac;
 import ViewModel.QLMauSac;
 import ViewModel.QLNhaSanXuat;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -60,7 +61,12 @@ public class MauSacRepository {
         String hql = "SELECT ms FROM MauSac ms WHERE ms.ma = ?1";
         TypedQuery<MauSac> query = this.hSession.createQuery(hql,MauSac.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public MauSac findByID(String id){
         return hSession.find(MauSac.class,id);

@@ -26,6 +26,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Tên</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="ten" value="${ch.ten}">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkten}</p></div>
             </div>
         </div>
         <%--            --%>

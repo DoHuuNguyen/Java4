@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.ChucVu;
 import DomainModel.DongSP;
 import ViewModel.QLChucVu;
 import ViewModel.QLDongSP;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
 import repository.DongSPRepository;
+import utils.CheckString;
 
 import java.io.IOException;
 
@@ -22,7 +24,9 @@ import java.io.IOException;
         "/DongSP/delete"})
 public class DongSPServlet extends HttpServlet {
     private DongSPRepository dongRepo;
-
+    String error ;
+    String errorTen;
+    String errorMa;
     public DongSPServlet(){
         this.dongRepo = new DongSPRepository();
     }
@@ -52,6 +56,9 @@ public class DongSPServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("trungMa",error);
+        request.setAttribute("checkten", errorTen);
+        request.setAttribute("checkma", errorMa);
         request.setAttribute("view","/Views/DongSP/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
@@ -59,6 +66,21 @@ public class DongSPServlet extends HttpServlet {
         try {
             DongSP dong = new DongSP();
             BeanUtils.populate(dong, request.getParameterMap());
+            errorTen = CheckString.checkValues(dong.getTen(),"tên");
+            errorMa = CheckString.checkValues(dong.getMa(),"mã");
+            DongSP cv = dongRepo.findByMa(dong.getMa());
+            if (cv!=null){
+                error="Trùng mã";
+                response.sendRedirect("/Assignment_war_exploded/DongSP/create");
+                return;
+            }else{
+                error="";
+            }
+
+            if (!errorTen.isEmpty()||!errorMa.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/DongSP/create");
+                return;
+            }
             this.dongRepo.insert(dong);
         }catch (Exception e){
             e.printStackTrace();
@@ -66,6 +88,7 @@ public class DongSPServlet extends HttpServlet {
         response.sendRedirect("../DongSP/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("checkten", errorTen);
         String ma = request.getParameter("ma");
         DongSP dong = this.dongRepo.findByMa(ma);
         request.setAttribute("dong", dong);
@@ -77,6 +100,11 @@ public class DongSPServlet extends HttpServlet {
             String ma = request.getParameter("ma");
             DongSP dong = this.dongRepo.findByMa(ma);
             BeanUtils.populate(dong, request.getParameterMap());
+            errorTen = CheckString.checkValues(dong.getTen(),"tên");
+            if (!errorTen.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/DongSP/edit?ma="+dong.getMa());
+                return;
+            }
             this.dongRepo.update(dong);
         }catch (Exception e){
             e.printStackTrace();

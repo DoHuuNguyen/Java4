@@ -6,13 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <link rel="stylesheet" href="/Assignment_war_exploded/css/bootstrap.css">
     <title>Chi Tiết Sản Phẩm</title>
 </head>
 <body>
-<form method="post" action="/Assignment_war_exploded/ChiTietSanPham/update?idSP=${ctsp.id}" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
+<form method="post" action="/Assignment_war_exploded/ChiTietSanPham/update?id=${ctsp.id}" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
     <div style="margin: 20px">
         <center><h1>Chi Tiết Sản Phẩm</h1></center>
         <div class="mb-3 row">
@@ -85,7 +87,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Năm Bảo Hành</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="namBh" value="${ctsp.namBh}">
+                <input type="text" class="form-control" name="namBH" value="${ctsp.namBH}">
             </div>
         </div>
         <%--            --%>
@@ -99,7 +101,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="soLuong" value="${ctsp.soLuong}">
+                <input type="text" class="form-control" name="soLuongTon" value="${ctsp.soLuongTon}">
             </div>
         </div>
 

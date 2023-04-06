@@ -3,6 +3,7 @@ package repository;
 import DomainModel.CuaHang;
 import DomainModel.KhachHang;
 import ViewModel.QLCuaHang;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -59,7 +60,12 @@ public class CuaHangRepository {
         String hql = "SELECT ch FROM CuaHang ch WHERE ch.ma = ?1";
         TypedQuery<CuaHang> query = this.hSession.createQuery(hql,CuaHang.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public CuaHang findByID(String id){
         return hSession.find(CuaHang.class,id);

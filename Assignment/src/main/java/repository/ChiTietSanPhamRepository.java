@@ -58,7 +58,7 @@ public class ChiTietSanPhamRepository {
         TypedQuery<ChiTietSP> query =this.hSession.createQuery(hql, ChiTietSP.class);
         return query.getResultList();
     }
-    public ChiTietSP findByMa(UUID ma){
+    public ChiTietSP findByMa(String ma){
         String hql = "SELECT ms FROM ChiTietSP ms WHERE ms. id = ?1";
         TypedQuery<ChiTietSP> query = this.hSession.createQuery(hql,ChiTietSP.class);
         query.setParameter(1,ma);

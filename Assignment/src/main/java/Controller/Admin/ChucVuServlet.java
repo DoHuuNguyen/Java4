@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
+import utils.CheckString;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
         "/ChucVu/delete"})
 public class ChucVuServlet extends HttpServlet {
     private ChucVuRepository cvRepo;
+    String error ;
+    String errorTen;
+    String errorMa;
 
     public ChucVuServlet(){
         this.cvRepo = new ChucVuRepository();
@@ -48,22 +52,40 @@ public class ChucVuServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("trungMa",error);
+        request.setAttribute("checkten", errorTen);
+        request.setAttribute("checkma", errorMa);
         request.setAttribute("view","/Views/ChucVu/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ChucVu chucVu = new ChucVu();
         try {
-            ChucVu cv = new ChucVu();
-            BeanUtils.populate(cv, request.getParameterMap());
-            this.cvRepo.insert(cv);
+            BeanUtils.populate(chucVu, request.getParameterMap());
         }catch (Exception e){
             e.printStackTrace();
         }
+        errorTen = CheckString.checkValues(chucVu.getTen(),"tên");
+        errorMa = CheckString.checkValues(chucVu.getMa(),"mã");
+        ChucVu cv = cvRepo.findByMa(chucVu.getMa());
+        if (cv!=null){
+            error="Trùng mã";
+            response.sendRedirect("/Assignment_war_exploded/ChucVu/create");
+            return;
+        }else{
+            error="";
+        }
 
+        if (!errorTen.isEmpty()||!errorMa.isEmpty()){
+            response.sendRedirect("/Assignment_war_exploded/ChucVu/create");
+            return;
+        }
+        this.cvRepo.insert(chucVu);
         response.sendRedirect("../ChucVu/index");
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
+        request.setAttribute("checkten", errorTen);
         ChucVu cv = this.cvRepo.findByMa(ma);
         request.setAttribute("cv", cv);
         request.setAttribute("view","/Views/ChucVu/edit.jsp");
@@ -72,9 +94,14 @@ public class ChucVuServlet extends HttpServlet {
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String ma = request.getParameter("ma");
-            ChucVu cv = this.cvRepo.findByMa(ma);
-            BeanUtils.populate(cv, request.getParameterMap());
-            this.cvRepo.update(cv);
+            ChucVu chucVu = this.cvRepo.findByMa(ma);
+            BeanUtils.populate(chucVu, request.getParameterMap());
+            errorTen = CheckString.checkValues(chucVu.getTen(),"tên");
+            if (!errorTen.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/ChucVu/edit?ma="+chucVu.getMa());
+                return;
+            }
+            this.cvRepo.update(chucVu);
         }catch (Exception e){
             e.printStackTrace();
         }

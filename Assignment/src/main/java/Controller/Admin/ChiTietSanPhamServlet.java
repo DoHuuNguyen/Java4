@@ -84,7 +84,7 @@ public class ChiTietSanPhamServlet extends HttpServlet {
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
-        String idSP = req.getParameter("idSP");
+        String idSP = req.getParameter("id");
         System.out.println(idSP);
         ChiTietSP kh = this.ctspRepo.findByID(idSP);
         this.ctspRepo.delete(kh);
@@ -92,24 +92,37 @@ public class ChiTietSanPhamServlet extends HttpServlet {
     }
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        ChiTietSP ctsp = this.ctspRepo.findByID(id);
         request.setAttribute("listNSX", ctspRepo.getAllNSX());
         request.setAttribute("listSanPham", ctspRepo.getAllSanPham());
         request.setAttribute("listDongSP", ctspRepo.getAllDongSP());
         request.setAttribute("listMauSac", ctspRepo.getAllMauSac());
+        ChiTietSP ctsp = this.ctspRepo.findByID(id);
         request.setAttribute("ctsp", ctsp);
         request.setAttribute("view","/Views/ChiTietSanPham/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String ma = request.getParameter("ma");
+            String ma = request.getParameter("id");
             ChiTietSP ctsp = this.ctspRepo.findByID(ma);
             BeanUtils.populate(ctsp, request.getParameterMap());
+            String maSanPham = request.getParameter("maSanPham");
+            String maNSX = request.getParameter("maNSX");
+            String maDongSP = request.getParameter("maDongSP");
+            String maMauSac = request.getParameter("maMauSac");
+            SanPham sanPham = ctspRepo.findMaSanPham(maSanPham);
+            NSX nsx = ctspRepo.findMaNSX(maNSX);
+            DongSP dongSP = ctspRepo.findMaDongSP(maDongSP);
+            MauSac mauSac = ctspRepo.findMaMauSac(maMauSac);
+            ctsp.setSanPham(sanPham);
+            ctsp.setDongSP(dongSP);
+            ctsp.setMauSac(mauSac);
+            ctsp.setNsx(nsx);
             this.ctspRepo.update(ctsp);
         }catch (Exception e){
             e.printStackTrace();
         }
+
         response.sendRedirect("../ChiTietSanPham/index");
     }
 }

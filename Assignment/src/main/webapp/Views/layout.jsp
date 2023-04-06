@@ -29,7 +29,7 @@
             <a class="nav-link" href="../KhachHang/index">Khách hàng</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../ChiTietSanPham/index">Sản phẩm</a>
+            <a class="nav-link" href="../ChiTietSanPham/index">Chi Tiết Sản phẩm</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../CuaHang/index">Cửa Hàng</a>

@@ -26,6 +26,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Họ</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="ho" value="${kh.ho}">
+                    <div class="col error mt-2" style="color: #ff0000"><p>${checkHo}</p></div>
                 </div>
             </div>
 <%--            --%>
@@ -33,6 +34,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tên Đệm</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="tenDem" value="${kh.tenDem}">
+                    <div class="col error mt-2" style="color: #ff0000"><p>${checkTenDem}</p></div>
                 </div>
             </div>
 <%--            --%>
@@ -40,6 +42,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tên</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="ten" value="${kh.ten}">
+                    <div class="col error mt-2" style="color: #ff0000"><p>${checkten}</p></div>
                 </div>
             </div>
 <%--            --%>
@@ -54,6 +57,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Số Điện Thoại</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="sdt"value="${kh.sdt}">
+                    <div class="col error mt-2" style="color: #ff0000"><p>${checkSdt}</p></div>
                 </div>
             </div>
 <%--            --%>
@@ -61,6 +65,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Đia Chỉ</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="diaChi"value="${kh.diaChi}">
+                    <div class="col error mt-2" style="color: #ff0000"><p>${checkDiaChi}</p></div>
                 </div>
             </div>
             <%--            --%>
@@ -68,6 +73,7 @@
                 <label for="staticEmail" class="col-sm-2 col-form-label">Mật Khẩu</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" name="matKhau" value="${kh.matKhau}">
+                    <div class="col error mt-2" style="color: #ff0000"><p>${checkMatKhau}</p></div>
                 </div>
             </div>
             <%--            --%>

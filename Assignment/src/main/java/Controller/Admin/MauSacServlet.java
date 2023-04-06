@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import DomainModel.ChucVu;
 import DomainModel.MauSac;
 import ViewModel.QLChucVu;
 import ViewModel.QLMauSac;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
 import repository.MauSacRepository;
+import utils.CheckString;
 
 import java.io.IOException;
 
@@ -22,6 +24,9 @@ import java.io.IOException;
         "/MauSac/delete"})
 public class MauSacServlet extends HttpServlet {
     private MauSacRepository msRepo;
+    String error ;
+    String errorTen;
+    String errorMa;
 
     public MauSacServlet(){
         this.msRepo = new MauSacRepository();
@@ -52,6 +57,9 @@ public class MauSacServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("trungMa",error);
+        request.setAttribute("checkten", errorTen);
+        request.setAttribute("checkma", errorMa);
         request.setAttribute("view","/Views/MauSac/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
@@ -59,6 +67,21 @@ public class MauSacServlet extends HttpServlet {
         try {
             MauSac ms = new MauSac();
             BeanUtils.populate(ms, request.getParameterMap());
+            errorTen = CheckString.checkValues(ms.getTen(),"tên");
+            errorMa = CheckString.checkValues(ms.getMa(),"mã");
+            MauSac cv = msRepo.findByMa(ms.getMa());
+            if (cv!=null){
+                error="Trùng mã";
+                response.sendRedirect("/Assignment_war_exploded/MauSac/create");
+                return;
+            }else{
+                error="";
+            }
+
+            if (!errorTen.isEmpty()||!errorMa.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/MauSac/create");
+                return;
+            }
             this.msRepo.insert(ms);
         }catch (Exception e){
             e.printStackTrace();
@@ -68,6 +91,7 @@ public class MauSacServlet extends HttpServlet {
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         MauSac ms = this.msRepo.findByMa(ma);
+        request.setAttribute("checkten", errorTen);
         request.setAttribute("ms", ms);
         request.setAttribute("view","/Views/MauSac/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
@@ -77,6 +101,11 @@ public class MauSacServlet extends HttpServlet {
             String ma = request.getParameter("ma");
             MauSac ms = this.msRepo.findByMa(ma);
             BeanUtils.populate(ms, request.getParameterMap());
+            errorTen = CheckString.checkValues(ms.getTen(),"tên");
+            if (!errorTen.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/MauSac/edit?ma="+ms.getMa());
+                return;
+            }
             this.msRepo.update(ms);
         }catch (Exception e){
             e.printStackTrace();

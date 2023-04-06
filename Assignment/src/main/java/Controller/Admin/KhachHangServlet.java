@@ -1,11 +1,13 @@
 package Controller.Admin;
 
+import DomainModel.DongSP;
 import DomainModel.KhachHang;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.KhachHangRepository;
+import utils.CheckString;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +15,15 @@ import java.util.ArrayList;
 @WebServlet({"/KhachHang/create","/KhachHang/store","/KhachHang/index","/KhachHang/delete","/KhachHang/edit","/KhachHang/update"})
 public class KhachHangServlet extends HttpServlet {
     private KhachHangRepository khRepo;
+    String error ;
+    String errorTen;
+    String errorMa;
+    String errorTenDem ;
+    String errorHo;
+    String errorSdt;
+    String errorDiaChi ;
+    String errorMatKhau;
+
 
     public KhachHangServlet() {
         this.khRepo = new KhachHangRepository();
@@ -43,6 +54,14 @@ public class KhachHangServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("trungMa",error);
+        request.setAttribute("checkten", errorTen);
+        request.setAttribute("checkma", errorMa);
+        request.setAttribute("checkHo",errorHo);
+        request.setAttribute("checkTenDem", errorTenDem);
+        request.setAttribute("checkSdt", errorSdt);
+        request.setAttribute("checkDiaChi", errorDiaChi);
+        request.setAttribute("checkMatKhau", errorMatKhau);
         request.setAttribute("view","/Views/KhachHang/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
@@ -50,6 +69,27 @@ public class KhachHangServlet extends HttpServlet {
         try {
             KhachHang kh = new KhachHang();
             BeanUtils.populate(kh, request.getParameterMap());
+            errorTen = CheckString.checkValues(kh.getTen(),"tên");
+            errorMa = CheckString.checkValues(kh.getMa(),"mã");
+            errorTenDem = CheckString.checkValues(kh.getTenDem(),"tên đệm");
+            errorHo = CheckString.checkValues(kh.getHo(),"họ");
+            errorDiaChi = CheckString.checkValues(kh.getDiaChi(),"địa chỉ");
+            errorMatKhau = CheckString.checkValues(kh.getMatKhau(),"mật khẩu");
+            errorSdt = CheckString.checkValues(kh.getSdt(),"số điện thoại");
+            KhachHang cv = khRepo.findByMa(kh.getMa());
+            if (cv!=null){
+                error="Trùng mã";
+                response.sendRedirect("/Assignment_war_exploded/KhachHang/create");
+                return;
+            }else{
+                error="";
+            }
+
+            if (!errorTen.isEmpty()||!errorMa.isEmpty()||!errorHo.isEmpty()||!errorTenDem.isEmpty()||
+                    !errorDiaChi.isEmpty()||!errorMatKhau.isEmpty()||!errorSdt.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/KhachHang/create");
+                return;
+            }
             this.khRepo.insert(kh);
         }catch (Exception e){
             e.printStackTrace();
@@ -71,6 +111,12 @@ public class KhachHangServlet extends HttpServlet {
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         KhachHang kh = this.khRepo.findByMa(ma);
+        request.setAttribute("checkten", errorTen);
+        request.setAttribute("checkHo",errorHo);
+        request.setAttribute("checkTenDem", errorTenDem);
+        request.setAttribute("checkSdt", errorSdt);
+        request.setAttribute("checkDiaChi", errorDiaChi);
+        request.setAttribute("checkMatKhau", errorMatKhau);
         request.setAttribute("kh", kh);
         request.setAttribute("view","/Views/KhachHang/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
@@ -80,6 +126,17 @@ public class KhachHangServlet extends HttpServlet {
             String ma = request.getParameter("ma");
             KhachHang kh = this.khRepo.findByMa(ma);
             BeanUtils.populate(kh, request.getParameterMap());
+            errorTen = CheckString.checkValues(kh.getTen(),"tên");
+            errorTenDem = CheckString.checkValues(kh.getTenDem(),"tên đệm");
+            errorHo = CheckString.checkValues(kh.getHo(),"họ");
+            errorDiaChi = CheckString.checkValues(kh.getDiaChi(),"địa chỉ");
+            errorMatKhau = CheckString.checkValues(kh.getMatKhau(),"mật khẩu");
+            errorSdt = CheckString.checkValues(kh.getSdt(),"số điện thoại");
+            if (!errorTen.isEmpty()||!errorHo.isEmpty()||!errorTenDem.isEmpty()||
+                    !errorDiaChi.isEmpty()||!errorMatKhau.isEmpty()||!errorSdt.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/KhachHang/edit?ma="+kh.getMa());
+                return;
+            }
             this.khRepo.update(kh);
         }catch (Exception e){
             e.printStackTrace();

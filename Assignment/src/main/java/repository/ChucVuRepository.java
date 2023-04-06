@@ -1,6 +1,7 @@
 package repository;
 
 import DomainModel.ChucVu;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -56,7 +57,12 @@ public class ChucVuRepository {
         String hql = "SELECT cv FROM ChucVu cv WHERE cv.ma = ?1";
         TypedQuery<ChucVu> query = this.hSession.createQuery(hql,ChucVu.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public ChucVu findByID(String id){
         return hSession.find(ChucVu.class,id);

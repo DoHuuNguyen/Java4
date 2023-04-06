@@ -51,7 +51,7 @@ public class SanPhamRepository {
         }
     }
     public List<SanPham> findAll(){
-        String hql = "SELECT ms FROM MauSac ms";
+        String hql = "SELECT ms FROM SanPham ms";
         TypedQuery<SanPham> query =this.hSession.createQuery(hql,SanPham.class);
         return query.getResultList();
     }

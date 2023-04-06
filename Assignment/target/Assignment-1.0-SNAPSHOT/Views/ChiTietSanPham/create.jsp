@@ -31,14 +31,6 @@
                 </select>
             </div>
         </div>
-        <%--            --%>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="tenSp">
-            </div>
-        </div>
-        <%--            --%>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label"> Nhà Sản Xuất</label>
             <div class="col-sm-10">
@@ -87,7 +79,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Năm Bảo Hành</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="namBh">
+                <input type="text" class="form-control" name="namBH">
             </div>
         </div>
         <%--            --%>
@@ -100,13 +92,19 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name="soLuong">
+                <input type="number" class="form-control" name="soLuongTon">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Nhập</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="giaNhap">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Giá Bán</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="giaBan">
             </div>
         </div>
         <button type="submit">Thêm</button>
