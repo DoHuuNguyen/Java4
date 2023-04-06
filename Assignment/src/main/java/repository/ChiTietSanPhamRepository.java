@@ -62,7 +62,12 @@ public class ChiTietSanPhamRepository {
         String hql = "SELECT ms FROM ChiTietSP ms WHERE ms. id = ?1";
         TypedQuery<ChiTietSP> query = this.hSession.createQuery(hql,ChiTietSP.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public ChiTietSP findByID(String id){
         return hSession.find(ChiTietSP.class,id);
