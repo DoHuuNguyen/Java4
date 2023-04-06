@@ -88,7 +88,6 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Năm Bảo Hành</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="namBH" value="${ctsp.namBH}">
-                <div class="error mt-2" style="color: red"><p>${checkNamBH}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -96,7 +95,6 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Mô Tả</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="moTa" value="${ctsp.moTa}">
-                <div class="error mt-2" style="color: red"><p>${checkMoTa}</p></div>
             </div>
         </div>
 
@@ -104,7 +102,6 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Lượng</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="soLuongTon" value="${ctsp.soLuongTon}">
-                <div class="error mt-2" style="color: red"><p>${checkSoLuong}</p></div>
             </div>
         </div>
 
@@ -112,7 +109,6 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Nhập</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="giaNhap" value="${ctsp.giaNhap}">
-                <div class="error mt-2" style="color: red"><p>${checkGiaNhap}</p></div>
             </div>
         </div>
 
@@ -120,7 +116,6 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Giá Bán</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="giaBan" value="${ctsp.giaBan}">
-                <div class="error mt-2" style="color: red"><p>${checkGiaBan}</p></div>
             </div>
         </div>
 

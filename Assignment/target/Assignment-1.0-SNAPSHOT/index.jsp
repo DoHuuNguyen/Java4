@@ -7,7 +7,7 @@
 </head>
 <body>
     <center>
-    <a type="button" href="/Assignment_war_exploded/Views/Login.jsp">Đăng Nhập</a>
+    <a style="margin-top: 10% " type="button" class="btn btn-outline-success" href="/Assignment_war_exploded/Views/Login.jsp">Đăng Nhập</a>
     </center>
 </body>
 </html>
