@@ -14,7 +14,7 @@
 <body>
     <form method="post" action="/Assignment_war_exploded/KhachHang/update?ma=${kh.ma}" style="margin: 30px; border: 1px solid white;background-color: #e9ecef;border-radius: 25px">
         <div style="margin: 20px">
-            <center><h1>Nhân Viên</h1></center>
+            <center><h1>Khách Hàng</h1></center>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Mã</label>
             <div class="col-sm-10">

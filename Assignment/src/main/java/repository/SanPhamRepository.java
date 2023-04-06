@@ -3,6 +3,7 @@ package repository;
 import DomainModel.SanPham;
 import ViewModel.QLMauSac;
 import ViewModel.QLSanPham;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -59,7 +60,12 @@ public class SanPhamRepository {
         String hql = "SELECT ms FROM SanPham ms WHERE ms.ma = ?1";
         TypedQuery<SanPham> query = this.hSession.createQuery(hql,SanPham.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public SanPham findByID(String id){
         return hSession.find(SanPham.class,id);

@@ -21,6 +21,8 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Mã</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="ma">
+                <div class="error mt-2" style="color: red"><p>${checkma}</p></div>
+                <div class="error mt-2" style="color: red"><p>${trungMa}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -28,6 +30,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Họ</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="ho">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkHo}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -35,6 +38,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Tên Đệm</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="tenDem">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkTenDem}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -42,6 +46,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Tên</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="ten">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkten}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -66,7 +71,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Ngày Sinh</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" name="ngaySinh">
+                <input type="date" class="form-control" name="ngaySinh" value="2000-01-01">
             </div>
         </div>
         <%--            --%>
@@ -74,6 +79,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Số Điện Thoại</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="sdt">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkSdt}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -81,6 +87,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Đia Chỉ</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="diaChi">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkDiaChi}</p></div>
             </div>
         </div>
         <%--            --%>
@@ -88,12 +95,13 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Mật Khẩu</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" name="matKhau">
+                <div class="col error mt-2" style="color: #ff0000"><p>${checkMatKhau}</p></div>
             </div>
         </div>
         <%--            --%>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">IdCuaHang</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Cửa Hàng</label>
             <div class="col-sm-10">
                 <select
                         class="form-select"
@@ -109,7 +117,7 @@
         <%--            --%>
         <%--            --%>
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">IdChucVu</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Chức Vụ</label>
             <div class="col-sm-10">
                 <select
                         class="form-select"

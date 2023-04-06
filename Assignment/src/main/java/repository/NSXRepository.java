@@ -1,6 +1,7 @@
 package repository;
 
 import DomainModel.NSX;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -56,7 +57,12 @@ public class NSXRepository {
         String hql = "SELECT ms FROM NSX ms WHERE ms.ma = ?1";
         TypedQuery<NSX> query = this.hSession.createQuery(hql,NSX.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public NSX findByID(String id){
         return hSession.find(NSX.class,id);

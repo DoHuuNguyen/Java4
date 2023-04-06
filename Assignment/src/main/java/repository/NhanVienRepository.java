@@ -63,7 +63,12 @@ public class NhanVienRepository {
         String hql = "SELECT kh FROM NhanVien kh WHERE kh.ma = ?1";
         TypedQuery<NhanVien> query = this.hSession.createQuery(hql,NhanVien.class);
         query.setParameter(1,ma);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            e.printStackTrace();
+            return null;
+        }
     }
     public NhanVien findByID(String id){
         return hSession.find(NhanVien.class,id);

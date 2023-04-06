@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.SanPhamRepository;
+import utils.CheckString;
 
 import java.io.IOException;
 
@@ -20,6 +21,9 @@ import java.io.IOException;
         "/SanPham/delete"})
 public class SanPhamServlet extends HttpServlet {
     private SanPhamRepository spRepo;
+    String error ;
+    String errorTen;
+    String errorMa;
 
     public SanPhamServlet(){
         this.spRepo = new SanPhamRepository();
@@ -50,6 +54,9 @@ public class SanPhamServlet extends HttpServlet {
         }
     }
     protected void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("trungMa",error);
+        request.setAttribute("checkten", errorTen);
+        request.setAttribute("checkma", errorMa);
         request.setAttribute("view","/Views/SanPham/create.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
     }
@@ -57,6 +64,21 @@ public class SanPhamServlet extends HttpServlet {
         try {
             SanPham sp = new SanPham();
             BeanUtils.populate(sp, request.getParameterMap());
+            errorTen = CheckString.checkValues(sp.getTen(),"tên");
+            errorMa = CheckString.checkValues(sp.getMa(),"mã");
+            SanPham cv = spRepo.findByMa(sp.getMa());
+            if (cv!=null){
+                error="Trùng mã";
+                response.sendRedirect("/Assignment_war_exploded/SanPham/create");
+                return;
+            }else{
+                error="";
+            }
+
+            if (!errorTen.isEmpty()||!errorMa.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/SanPham/create");
+                return;
+            }
             this.spRepo.insert(sp);
         }catch (Exception e){
             e.printStackTrace();
@@ -66,6 +88,7 @@ public class SanPhamServlet extends HttpServlet {
     protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ma = request.getParameter("ma");
         SanPham sp = this.spRepo.findByMa(ma);
+        request.setAttribute("checkten", errorTen);
         request.setAttribute("sp", sp);
         request.setAttribute("view","/Views/SanPham/edit.jsp");
         request.getRequestDispatcher("/Views/layout.jsp").forward(request,response);
@@ -75,6 +98,11 @@ public class SanPhamServlet extends HttpServlet {
             String ma = request.getParameter("ma");
             SanPham sp = this.spRepo.findByMa(ma);
             BeanUtils.populate(sp, request.getParameterMap());
+            errorTen = CheckString.checkValues(sp.getTen(),"tên");
+            if (!errorTen.isEmpty()){
+                response.sendRedirect("/Assignment_war_exploded/SanPham/edit?ma="+sp.getMa());
+                return;
+            }
             this.spRepo.update(sp);
         }catch (Exception e){
             e.printStackTrace();

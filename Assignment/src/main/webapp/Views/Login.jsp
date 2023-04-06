@@ -30,7 +30,7 @@
                     <input type="password" class="form-control" id="inputPassword" name="matKhau">
                 </div>
             </div>
-            <center><button type="submit">Đăng nhập</button></center>
+            <center><button type="submit" class="btn btn-outline-success">Đăng nhập</button></center>
         </div>
     </div>
 </form>
